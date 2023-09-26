@@ -11,7 +11,7 @@ function TelaCalculadora({ navigation }){
             <Button title="Sair" onPress={() => navigation.navigate("Login")} />
 
             {/* Esse botão vai ficar no final da página */}
-            <Button title="Calcular" onPress={() => navigation.navigate("")} />
+            <Button title="Calcular" onPress={() => navigation.navigate("Resultado")} />
         </View>
     )
 }

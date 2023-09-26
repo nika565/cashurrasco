@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import TelaLogin from "../../screens/login/login";
 import TelaCadastro from "../../screens/cadastro/cadastro";
 import TelaCalculadora from "../../screens/calculadora/calculadora";
+import TelaResultado from "../../screens/resultado/resultado";
 import TelaListaReceitas from "../../screens/listaReceita/listaReceita";
 import TelaHistorico from "../../screens/historico/historico";
 
@@ -17,6 +18,7 @@ function Navigation(){
                 <Stack.Screen name="Login" component={TelaLogin}/>
                 <Stack.Screen name="Cadastro" component={TelaCadastro}/>
                 <Stack.Screen name="Calculadora" component={TelaCalculadora}/>
+                <Stack.Screen name="Resultado" component={TelaResultado}/>
                 <Stack.Screen name="ListaReceitas" component={TelaListaReceitas}/>
                 <Stack.Screen name="Historico" component={TelaHistorico}/>
             </Stack.Navigator>
