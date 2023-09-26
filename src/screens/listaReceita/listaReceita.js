@@ -1,36 +1,60 @@
 import React from "react";
 import { View, Text, ScrollView, TouchableOpacity, Image, StyleSheet } from "react-native";
 
-function TelaListaReceitas(){
+function TelaListaReceitas({ navigation }){
     return(
         <ScrollView style="estilos.tela">
-            <Text>Aqui ficarão as receitas</Text>
+            <Text>Receitas</Text>
 
-            <TouchableOpacity style={estilos.botaoReceita}>
+            <TouchableOpacity style={estilos.botaoReceita} onPress={() => navigation.navigate("Receita",
+                {
+                    id: 1,
+                    nome: "Frango de churrasco na brasa",
+                    ingredientes: ["1 frango aberto ao meio", "2 dentes de alho esmagados", "1 colher de sopa de azeite", "1 colher de chá de pimentão doce", "1 colher de chá de piripiri em pó (pimenta caiena)", "Sumo de meio de limão", "Sal a gosto"],
+                    molho: "50 ml de óleo vegetal \n 1 colher de chá de piripiri em pó \n 1 colher de chá de pimentão doce \n 2 dentes de alho esmagados \n 25 ml de cerveja \n Pimenta a gosto \n sumo de meio limão \n 1 folha de louro \n sal a gosto",
+                    preparo: "Primeiro, deve fazer o molho de churrasco: esmague os dentes de alho e junte o piripiri, o óleo, o pimentão, o sumo de limão, o louro e a cerveja. Tempere de sal e pimenta a seu gosto e envolta bem toda a mistura. \n Prepare o frango na marinada: esmague o alho e junte o azeite, o sumo de limão, o pimentão doce, o piripiri e o sal. Envolva tudo muito bem e barra todo o frango com este preparado. Deixe marinar durante cerca de 1h. \n Prepare as brasas para assar. Quando estiverem prontas, disponha o frango sobre uma grelha e coloque sobre as brasas. \n Enquanto grelha, vá pincelando o frango com o molho e vire-o de modo a que fique bem dourado por igual. Quando estiver bem dourado e assado, retire e corte em pedaços. Sirva de imediato.",
+                }
+            )}>
                 <Image source={{uri: 'https://www.colherdepau.net/wp-content/uploads/2021/03/26219596_174952219904944_3535145634622898468_n.jpg'}} style={estilos.imagemReceita} />
                 <View style={estilos.containerTexto}>
                     <Text style={estilos.textoReceita}>Frango à portuguesa</Text>
                 </View>
             </TouchableOpacity>
 
-            <TouchableOpacity style={estilos.botaoReceita}>
-                <Image source={{uri: 'https://www.colherdepau.net/wp-content/uploads/2021/03/26219596_174952219904944_3535145634622898468_n.jpg'}} style={estilos.imagemReceita} />
+            <TouchableOpacity style={estilos.botaoReceita} onPress={() => navigation.navigate("Receita",
+                {
+                    id: 1,
+                    nome: "a",
+                    ingredientes: "e",
+                    molho: "i",
+                    preparo: "o",
+                }
+            )}>
+                <Image source={{uri: 'https://s2-receitas.glbimg.com/X4ml6XBTOVnqH8KW57eBfGBs-Oc=/0x0:984x648/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_1f540e0b94d8437dbbc39d567a1dee68/internal_photos/bs/2022/Q/B/BHy7kUR0CN7EiUaccsZQ/picanha-no-espeto.jpg'}} style={estilos.imagemReceita} />
                 <View style={estilos.containerTexto}>
-                    <Text style={estilos.textoReceita}>Frango à portuguesa</Text>
+                    <Text style={estilos.textoReceita}>Picanha na brasa</Text>
                 </View>
             </TouchableOpacity>
 
-            <TouchableOpacity style={estilos.botaoReceita}>
-                <Image source={{uri: 'https://www.colherdepau.net/wp-content/uploads/2021/03/26219596_174952219904944_3535145634622898468_n.jpg'}} style={estilos.imagemReceita} />
+            <TouchableOpacity style={estilos.botaoReceita} onPress={() => navigation.navigate("Receita",
+                {
+                    id: 1,
+                    nome: "a",
+                    ingredientes: "e",
+                    molho: "i",
+                    preparo: "o",
+                }
+            )}>
+                <Image source={{uri: 'https://www.comidaereceitas.com.br/wp-content/uploads/2013/11/Paleta-de-porco-assada1.jpg'}} style={estilos.imagemReceita} />
                 <View style={estilos.containerTexto}>
-                    <Text style={estilos.textoReceita}>Frango à portuguesa</Text>
+                    <Text style={estilos.textoReceita}>Paleta suína com pimenta</Text>
                 </View>
             </TouchableOpacity>
 
-            <TouchableOpacity style={estilos.botaoReceita}>
-                <Image source={{uri: 'https://www.colherdepau.net/wp-content/uploads/2021/03/26219596_174952219904944_3535145634622898468_n.jpg'}} style={estilos.imagemReceita} />
+            <TouchableOpacity style={estilos.botaoReceita} onPress={() => navigation.navigate("Receita")}>
+                <Image source={{uri: 'https://www.minhareceita.com.br/app/uploads/2021/04/shutterstock_1659060670-1.jpg'}} style={estilos.imagemReceita} />
                 <View style={estilos.containerTexto}>
-                    <Text style={estilos.textoReceita}>Frango à portuguesa</Text>
+                    <Text style={estilos.textoReceita}>Linguiça na brasa</Text>
                 </View>
             </TouchableOpacity>
         </ScrollView>

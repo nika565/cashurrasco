@@ -12,9 +12,8 @@ function TelaLogin({ navigation }){ //O parâmetro permitirá que naveguemos ent
       <Button title="Entrar" onPress={() => navigation.navigate('Calculadora', {
             
             parametro: "deu certo", /* Dentro desse arrow function, estou retornando, não só o caminho que o botão deve seguir, mas os dados que deve levar também com base nos intens desse objeto, que são os valores id e parametros */
-          })
-        }
-      />
+          }
+        )}/>
     </View>
   )
 }
