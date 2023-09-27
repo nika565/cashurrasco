@@ -27,6 +27,7 @@ export async function apagarUsuario(id) {
         
     } catch (error) {
         console.log(error);
+        return {msg: "Ocorreu um erro ao excluir os dados", status: "error"};
     }
 
 }

@@ -29,6 +29,7 @@ export async function criarUsuario(obj) {
         
     } catch (error) {
         console.log(error);
+        return {msg: "Ocorreu um erro ao criar um novo usuário", status: "error"};
     }
 
 }

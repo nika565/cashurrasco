@@ -30,6 +30,7 @@ export async function editarUsuario(id, obj) {
         
     } catch (error) {
         console.log(error);
+        return {msg: "Ocorreu um erro ao editar os dados", status: "error"};
     }
 
 }

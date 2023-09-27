@@ -27,6 +27,7 @@ export async function apagarEvento(id) {
         
     } catch (error) {
         console.log(error);
+        return {msg: "Ocorreu um erro ao excluir os dados", status: "error"};
     }
 
 }

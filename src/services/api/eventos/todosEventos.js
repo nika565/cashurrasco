@@ -27,6 +27,8 @@ export async function todosEventos(id) {
         
     } catch (error) {
         console.log(error);
+
+        return {msg: "Ocorreu um erro ao buscar os dados", status: "error"};
     }
 
 }

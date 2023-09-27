@@ -28,6 +28,7 @@ export async function criarEvento(obj) {
         
     } catch (error) {
         console.log(error);
+        return {msg: "Ocorreu um erro ao criar evento", status: "error"};
     }
 
 }

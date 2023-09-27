@@ -28,6 +28,7 @@ export async function editarEvento(id, obj) {
         
     } catch (error) {
         console.log(error);
+        return {msg: "Ocorreu um erro ao editar o evento", status: "error"};
     }
 
 }

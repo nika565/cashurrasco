@@ -28,6 +28,7 @@ export async function login(obj) {
         
     } catch (error) {
         console.log(error);
+        return {msg: "Ocorreu um erro ao fazer login", status: "error"};
     }
 
 }
