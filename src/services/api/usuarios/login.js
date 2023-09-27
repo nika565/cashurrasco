@@ -10,7 +10,7 @@ import { url, endpointLogin } from "../../router/apiRota";
 /*
     Função para cuidar do login: é nescessário passar um objeto no parâmetro da função contendo "nome" e "email"
 */
-export async function login(obj) {
+export default async function login(obj) {
 
     try {
 

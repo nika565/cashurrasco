@@ -11,7 +11,7 @@ import { url, endpointUsuario } from "../../router/apiRota";
     Função para bsucar: é nescessário passar um id do usuário no parâmetro da função.
 */
 
-export async function buscarUsuario(id) {
+export default async function buscarUsuario(id) {
 
     try {
 

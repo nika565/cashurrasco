@@ -11,7 +11,7 @@ import { url, endpointUsuario } from "../../router/apiRota";
     Função para criar: é nescessário passar um objeto no parâmetro da função contendo "nome", "email", "celular", e "senha".
 */
 
-export async function criarUsuario(obj) {
+export default async function criarUsuario(obj) {
 
     try {
 

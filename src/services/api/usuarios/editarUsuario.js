@@ -12,7 +12,7 @@ import { url, endpointUsuario } from "../../router/apiRota";
     objeto no parâmetro da função contendo "nome", "email", "celular", e "senha".
 */
 
-export async function editarUsuario(id, obj) {
+export default async function editarUsuario(id, obj) {
 
     try {
 

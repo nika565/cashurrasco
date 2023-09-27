@@ -10,7 +10,7 @@ import { url, endpointEvento } from "../../router/apiRota";
 /*
     Função para buscar: é nescessário passar o id do evento específico no parâmetro da função.
 */
-export async function editarEvento(id, obj) {
+export default async function editarEvento(id, obj) {
 
     try {
 

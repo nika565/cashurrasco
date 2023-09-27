@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
-import criarUsuario from '../services/api/usuarios/criarUsuario'
+import criarUsuario from '../services/api/usuarios/criarUsuario.js'
 
 export default function CadastroForm() {
   const [nome, setNome] = useState('');
@@ -14,6 +14,8 @@ export default function CadastroForm() {
     celular: celular,
     senha: senha
   };
+
+  let respostaApi; 
 
   return (
     <View style={styles.container}>
@@ -52,7 +54,8 @@ export default function CadastroForm() {
         secureTextEntry={true}
       />
 
-      <Button title="Cadastrar" onPress={() => criarUsuario(usuario)} />
+      <Button title="Cadastrar" onPress={async () => await criarUsuario(usuario)} />
+
     </View>
   );
 }

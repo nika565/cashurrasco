@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import todosEventos from '../services/api/eventos/todosEventos'
 
-const historico = () => {
+const Historico = () => {
     const [data, setData] = useState(''); // Estado para armazenar todos os eventos
     const [error, setError] = useState(''); // Estado para armazenar mensagens de erro
 
@@ -53,4 +53,4 @@ const historico = () => {
     );
 }
 
-export default historico;
+export default Historico;

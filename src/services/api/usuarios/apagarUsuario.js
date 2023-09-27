@@ -10,7 +10,7 @@ import { url, endpointUsuario } from "../../router/apiRota";
 /*
     Função para deletar: é nescessário passar um id do usuário no parâmetro da função.
 */
-export async function apagarUsuario(id) {
+export default async function apagarUsuario(id) {
 
     try {
 

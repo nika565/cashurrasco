@@ -10,7 +10,7 @@ import { url, endpointEvento } from "../../router/apiRota";
 /*
     Função para deletar: é nescessário passar um id do evento no parâmetro da função.
 */
-export async function apagarEvento(id) {
+export default async function apagarEvento(id) {
 
     try {
 

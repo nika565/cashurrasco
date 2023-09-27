@@ -10,7 +10,7 @@ import { url, endpointTodosEventos } from "../../router/apiRota";
 /*
     Função para buscar: é nescessário passar o id da pessoa que organizou o evento no parâmetro da função.
 */
-export async function todosEventos(id) {
+export default async function todosEventos(id) {
 
     try {
 
