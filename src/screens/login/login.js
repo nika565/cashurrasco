@@ -16,9 +16,9 @@ function TelaLogin({ navigation }) {
     return (
         <View style={styles.container}>
 
-            <View>
-                
+            {/* <Button title="alternativo" onPress={() => navigation.navigate("Calculadora")}></Button> */}
 
+            <View>
                 <Text style={styles.label}>Email:</Text>
                 <TextInput
                     style={styles.input}
