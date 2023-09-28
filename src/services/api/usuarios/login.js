@@ -6,7 +6,7 @@
 
 // Importando as rotas do login
 import { url, endpointLogin } from "../../router/apiRota";
-import Alerta from "../../../components/alerta";
+
 
 /*
     Função para cuidar do login: é nescessário passar um objeto no parâmetro da função contendo "nome" e "email"
@@ -25,14 +25,7 @@ export default async function Login(obj) {
 
         const response = await request.json();
 
-        if(response.status === 'success') {
-            Alerta('Sucesso!.', response.msg)
-            return true;
-        };
-        
-        if(response.status === 'error') Alerta('Algo deu errado.', response.msg);
-
-        return false;
+        return response;
         
     } catch (error) {
         console.log(error);

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, Button, StyleSheet, TextInput } from "react-native"
 import Login from "../../services/api/usuarios/login";
+import Alerta from "../../components/alerta";
 
 function TelaLogin({ navigation }) {
 
@@ -40,9 +41,16 @@ function TelaLogin({ navigation }) {
                 <Button title="Entrar" onPress={async () => {
                     const resposta = await Login(usuario)
 
-                    if (resposta) {
-                        navigation.navigate("Calculadora")
+                    if (resposta.status == 'success') {
+
+                        Alerta('Sucesso!', resposta.msg);
+
+                        navigation.navigate("Calculadora", resposta.dados);
+
+                    } else {
+                        Alerta('Algo deu errado:', resposta.msg)
                     }
+
                 }} />
 
             </View>

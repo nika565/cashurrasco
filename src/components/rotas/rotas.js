@@ -9,6 +9,7 @@ import TelaResultado from "../../screens/resultado/resultado";
 import TelaListaReceitas from "../../screens/listaReceita/listaReceita";
 import TelaReceita from "../../screens/receita/receita";
 import TelaHistorico from "../../screens/historico/historico";
+import Perfil from "../../screens/perfil/perfil";
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +24,7 @@ function Navigation(){
                 <Stack.Screen name="ListaReceitas" component={TelaListaReceitas}/>
                 <Stack.Screen name="Receita" component={TelaReceita}/>
                 <Stack.Screen name="Historico" component={TelaHistorico}/>
+                <Stack.Screen name="Perfil" component={Perfil}/>
             </Stack.Navigator>
         </NavigationContainer>
     )
