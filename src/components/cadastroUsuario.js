@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import criarUsuario from '../services/api/usuarios/criarUsuario.js'
 
-export default function CadastroForm() {
+export default function CadastroForm({ navigation }) {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [celular, setCelular] = useState('');
@@ -15,7 +15,7 @@ export default function CadastroForm() {
     senha: senha
   };
 
-  let respostaApi; 
+  let resposta;
 
   return (
     <View style={styles.container}>
@@ -59,6 +59,7 @@ export default function CadastroForm() {
     </View>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {

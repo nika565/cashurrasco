@@ -16,6 +16,7 @@ const Historico = () => {
             const dadosApi = await todosEventos(idUsuario);
 
             if (dadosApi.status === 'error') {
+                alert(dadosApi.msg);
                 setError(dadosApi.msg); // Define a mensagem de erro no estado
             } else {
                 setData(dadosApi.eventos); // Pega o array de eventos
