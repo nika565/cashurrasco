@@ -31,11 +31,10 @@ export default async function criarUsuario(obj) {
         const response = await request.json();
 
         if(response.status === 'success') {
-            
-
             Alerta('Sucesso!.', response.msg)
             return true;
         };
+        
         if(response.status === 'error') Alerta('Algo deu errado.', response.msg);
 
         return false;
