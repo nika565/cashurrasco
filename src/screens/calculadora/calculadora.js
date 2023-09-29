@@ -4,8 +4,216 @@ import { CheckBox } from "react-native-elements";
 
 function TelaCalculadora({ route, navigation }) {
 
-    // State para meu checkbox
-    const [isChecked, setCheked] = useState(false);
+    // VARIÁVEIS PARA CONTROLAR TODOS OS DADOS DO EVENTO
+
+    // INFORMAÇÕES DO ORGANIZADOR DO EVENTO
+    const idOrganizador = route.params.id;
+    const [nomeEvento, setNomeEvento] = useState('');
+    const [qtdHomens, setQtdHomens] = useState('');
+    const [qtdMulheres, setQtdMulheres] = useState('');
+    const [qtdCriancas, setQtdCriancas] = useState('');
+    const [endereco, setEndereco] = useState('');
+    const [custoLocal, setCustoLocal] = useState('');
+    const [dataEvento, setDataEvento] = useState('');
+
+    // CARNE BOVINA
+    const [maminha, setMaminha] = useState(false);
+    const [contraFile, setContraFile] = useState(false);
+    const [alcatra, setAlcatra] = useState(false);
+
+    // CARNE SUÍNA
+    const [costela, setCostela] = useState(false);
+    const [fileSuino, setFileSuino] = useState(false);
+    const [lombo, setLombo] = useState(false);
+
+    // LINGUÍÇAS
+    const [toscana, setToscana] = useState(false);
+    const [cuiabana, setCuiabana] = useState(false);
+    const [linguicaFrango, setLinguicaFrango] = useState(false);
+
+    // CARNE DE FRANGO
+    const [sobrecoxa, setSobrecoxa] = useState(false);
+    const [asa, setAsa] = useState(false);
+    const [coracao, setCoracao] = useState(false);
+
+    // BEBIDAS
+    const [agua, setAgua] = useState(false);
+    const [refri, setRefri] = useState(false);
+    const [cerveja, setCerveja] = useState(false);
+    const [suco, setSuco] = useState(false);
+
+    // SUPRIMENTOS
+    const [copoDesc, setCopoDesc] = useState(false);
+    const [talheres, setTalheres] = useState(false);
+    const [prato, setPrato] = useState(false);
+    const [carvao, setCarvao] = useState(false);
+    const [guardanapos, setGuardanapos] = useState(false);
+    const [palitos, setPalitos] = useState(false);
+
+    // ACOMPANHAMENTOS
+    const [arroz, setArroz] = useState(false);
+    const [farofa, setFarofa] = useState(false);
+    const [pao, setPao] = useState(false);
+    const [paoAlho, setPaoAlho] = useState(false);
+    const [vinagrete, setVinagrete] = useState(false);
+    const [queijoCoalho, setQueijoCoalho] = useState(false);
+
+    // Objeto que vai para op back-end salvar o evento
+    const evento = {
+        idOrganizador: idOrganizador,
+        nomeEvento: nomeEvento,
+        qtdHomens: qtdHomens,
+        qtdMulheres: qtdMulheres,
+        qtdCriancas: qtdCriancas,
+        endereco: endereco,
+        custoLocal: custoLocal,
+        dataEvento: dataEvento,
+
+        carnes: {
+
+            bovino: {
+
+                contraFile: {
+                    selecionado: contraFile
+                },
+
+                maminha: {
+                    selecionado: maminha
+                },
+
+                alcatra: {
+                    selecionado: alcatra
+                }
+
+            },
+
+            suino: {
+
+                costela: {
+                    selecionado: costela
+                },
+
+                fileSuino: {
+                    selcionado: fileSuino
+                },
+
+                lombo: {
+                    selecionado: lombo
+                }
+
+            },
+
+            frango: {
+
+                sobrecoxa: {
+                    selecionado: sobrecoxa
+                },
+
+                coracao: {
+                    selecionado: coracao
+                },
+
+                asa: {
+                    selecionado: asa
+                }
+
+            },
+
+            linguicas: {
+
+                toscana: {
+                    selecionado: toscana
+                }, 
+
+                cuiabana: {
+                    selecionado: cuiabana
+                },
+
+                linguicaFrango: {
+                    selecionado: linguicaFrango
+                }
+
+            }
+
+        },
+
+        bebidas: {
+
+            agua: {
+                selecionado: agua
+            },
+
+            refri: {
+                selecionado: refri
+            },
+
+            cerveja: {
+                selecionado: cerveja
+            }, 
+
+            suco: {
+                selecionado: suco
+            }
+
+        },
+
+        suprimentos: {
+
+            copoDesc: {
+                selecionado: copoDesc
+            }, 
+
+            talheres: {
+                selecionado: talheres
+            },
+            
+            prato: {
+                selecionado: prato
+            },
+
+            carvao: {
+                selecionado: carvao
+            },
+
+            guardanapos: {
+                selecionado: guardanapos
+            },
+
+            palitos: {
+                selecionado: palitos
+            }
+
+        },
+
+        acompanhamentos: {
+
+            arroz: {
+                selecionado: arroz
+            },
+
+            farofa: {
+                selecionado: farofa
+            },
+
+            pao: {
+                selecionado: pao
+            },
+
+            paoAlho: {
+                selecionado: paoAlho
+            },
+
+            vinagrete: {
+                selecionado: vinagrete
+            },
+
+            queijoCoalho: {
+                selecionado: queijoCoalho
+            }
+
+        }
+
+    }
 
     return (
         <View>
@@ -19,34 +227,284 @@ function TelaCalculadora({ route, navigation }) {
             {/* Esse botão vai ficar no final da página */}
             <Button title="Calcular" onPress={() => navigation.navigate("Resultado")} />
 
+
+            {/* CARNE BOVINA */}
+            <Text>Carne bovina</Text>
             <CheckBox
-                title="Boi"
+                title="Contra-filé"
                 checkedIcon="check"
                 uncheckedIcon="square-o"
                 checkedColor="orange"
-                checked={isChecked}
-                onPress={() => setCheked(!isChecked)}
+                checked={contraFile}
+                onPress={() => setContraFile(!contraFile)}
             />
 
             <CheckBox
-                title="Porco"
+                title="Maminha"
                 checkedIcon="check"
                 uncheckedIcon="square-o"
                 checkedColor="orange"
-                checked={isChecked}
-                onPress={() => setCheked(!isChecked)}
+                checked={maminha}
+                onPress={() => setMaminha(!maminha)}
             />
 
             <CheckBox
-                title="Galinha"
+                title="Alcatra"
                 checkedIcon="check"
                 uncheckedIcon="square-o"
                 checkedColor="orange"
-                checked={isChecked}
-                onPress={() => setCheked(!isChecked)}
+                checked={alcatra}
+                onPress={() => setAlcatra(!alcatra)}
             />
 
-            <Button title="Teste" onPress={console.log(isChecked)}/>
+
+            {/* CARNE SUINA */}
+            <Text>Carne suína</Text>
+            <CheckBox
+                title="Costela"
+                checkedIcon="check"
+                uncheckedIcon="square-o"
+                checkedColor="orange"
+                checked={costela}
+                onPress={() => setCostela(!costela)}
+            />
+
+            <CheckBox
+                title="Filé suino"
+                checkedIcon="check"
+                uncheckedIcon="square-o"
+                checkedColor="orange"
+                checked={fileSuino}
+                onPress={() => setFileSuino(!fileSuino)}
+            />
+
+            <CheckBox
+                title="Lombo"
+                checkedIcon="check"
+                uncheckedIcon="square-o"
+                checkedColor="orange"
+                checked={lombo}
+                onPress={() => setLombo(!lombo)}
+            />
+
+
+            {/* LINGUÍÇAS */}
+            <Text>Linguícas</Text>
+            <CheckBox
+                title="Linguíça Toscana"
+                checkedIcon="check"
+                uncheckedIcon="square-o"
+                checkedColor="orange"
+                checked={toscana}
+                onPress={() => setToscana(!toscana)}
+            />
+
+            <CheckBox
+                title="Linguíça Cuiabana"
+                checkedIcon="check"
+                uncheckedIcon="square-o"
+                checkedColor="orange"
+                checked={cuiabana}
+                onPress={() => setCuiabana(!cuiabana)}
+            />
+
+            <CheckBox
+                title="Linguíça de Frango"
+                checkedIcon="check"
+                uncheckedIcon="square-o"
+                checkedColor="orange"
+                checked={linguicaFrango}
+                onPress={() => setLinguicaFrango(!linguicaFrango)}
+            />
+
+
+
+            {/* CARNE DE FRANGO */}
+            <Text>Frango</Text>
+            <CheckBox
+                title="Sobrecoxa"
+                checkedIcon="check"
+                uncheckedIcon="square-o"
+                checkedColor="orange"
+                checked={sobrecoxa}
+                onPress={() => setSobrecoxa(!sobrecoxa)}
+            />
+
+            <CheckBox
+                title="Coração"
+                checkedIcon="check"
+                uncheckedIcon="square-o"
+                checkedColor="orange"
+                checked={coracao}
+                onPress={() => setCoracao(!coracao)}
+            />
+
+            <CheckBox
+                title="Asa"
+                checkedIcon="check"
+                uncheckedIcon="square-o"
+                checkedColor="orange"
+                checked={asa}
+                onPress={() => setAsa(!asa)}
+            />
+
+
+
+            {/* BEBDIDAS */}
+            <Text>Bebidas</Text>
+            <CheckBox
+                title="Água"
+                checkedIcon="check"
+                uncheckedIcon="square-o"
+                checkedColor="orange"
+                checked={agua}
+                onPress={() => setAgua(!agua)}
+            />
+
+            <CheckBox
+                title="Refrigerante"
+                checkedIcon="check"
+                uncheckedIcon="square-o"
+                checkedColor="orange"
+                checked={refri}
+                onPress={() => setRefri(!refri)}
+            />
+
+            <CheckBox
+                title="Cerveja"
+                checkedIcon="check"
+                uncheckedIcon="square-o"
+                checkedColor="orange"
+                checked={cerveja}
+                onPress={() => setCerveja(!cerveja)}
+            />
+
+            <CheckBox
+                title="Suco"
+                checkedIcon="check"
+                uncheckedIcon="square-o"
+                checkedColor="orange"
+                checked={suco}
+                onPress={() => setSuco(!suco)}
+            />
+
+
+
+            {/* Suprimentos */}
+            <Text>Suprimentos</Text>
+            <CheckBox
+                title="Copo Descartável"
+                checkedIcon="check"
+                uncheckedIcon="square-o"
+                checkedColor="orange"
+                checked={copoDesc}
+                onPress={() => setCopoDesc(!copoDesc)}
+            />
+
+            <CheckBox
+                title="Talheres Descartáveis"
+                checkedIcon="check"
+                uncheckedIcon="square-o"
+                checkedColor="orange"
+                checked={talheres}
+                onPress={() => setTalheres(!talheres)}
+            />
+
+            <CheckBox
+                title="Prato Descartável"
+                checkedIcon="check"
+                uncheckedIcon="square-o"
+                checkedColor="orange"
+                checked={prato}
+                onPress={() => setPrato(!prato)}
+            />
+
+            <CheckBox
+                title="Carvão"
+                checkedIcon="check"
+                uncheckedIcon="square-o"
+                checkedColor="orange"
+                checked={carvao}
+                onPress={() => setCarvao(!carvao)}
+            />
+
+            <CheckBox
+                title="Guardanapos"
+                checkedIcon="check"
+                uncheckedIcon="square-o"
+                checkedColor="orange"
+                checked={guardanapos}
+                onPress={() => setGuardanapos(!guardanapos)}
+            />
+
+            <CheckBox
+                title="Palitos de dente"
+                checkedIcon="check"
+                uncheckedIcon="square-o"
+                checkedColor="orange"
+                checked={palitos}
+                onPress={() => setPalitos(!palitos)}
+            />
+
+
+            {/* ACOMPANHAMENTOS */}
+            <Text>Acompanhamentos</Text>
+            <CheckBox
+                title="Arroz"
+                checkedIcon="check"
+                uncheckedIcon="square-o"
+                checkedColor="orange"
+                checked={arroz}
+                onPress={() => setArroz(!arroz)}
+            />
+
+            <CheckBox
+                title="Farofa"
+                checkedIcon="check"
+                uncheckedIcon="square-o"
+                checkedColor="orange"
+                checked={farofa}
+                onPress={() => setFarofa(!farofa)}
+            />
+
+            <CheckBox
+                title="Pão"
+                checkedIcon="check"
+                uncheckedIcon="square-o"
+                checkedColor="orange"
+                checked={pao}
+                onPress={() => setPao(!pao)}
+            />
+
+            <CheckBox
+                title="Pão de alho"
+                checkedIcon="check"
+                uncheckedIcon="square-o"
+                checkedColor="orange"
+                checked={paoAlho}
+                onPress={() => setPaoAlho(!paoAlho)}
+            />
+
+            <CheckBox
+                title="Vinagrete"
+                checkedIcon="check"
+                uncheckedIcon="square-o"
+                checkedColor="orange"
+                checked={vinagrete}
+                onPress={() => setVinagrete(!vinagrete)}
+            />
+
+            <CheckBox
+                title="Queijo Coalho"
+                checkedIcon="check"
+                uncheckedIcon="square-o"
+                checkedColor="orange"
+                checked={queijoCoalho}
+                onPress={() => setQueijoCoalho(!queijoCoalho)}
+            />
+
+
+            {/* <Button title="Teste" onPress={console.log(isChecked)}/> */}
         </View>
 
     )
