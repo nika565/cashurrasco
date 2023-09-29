@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { View, Text, Button, ScrollView } from "react-native"
+import { View, Text, Button, ScrollView, TextInput } from "react-native"
 import { CheckBox } from "react-native-elements";
+import criarEvento from "../../services/api/eventos/criarEvento";
 
 function TelaCalculadora({ route, navigation }) {
 
@@ -62,11 +63,11 @@ function TelaCalculadora({ route, navigation }) {
     const evento = {
         idOrganizador: idOrganizador,
         nomeEvento: nomeEvento,
-        qtdHomens: qtdHomens,
-        qtdMulheres: qtdMulheres,
-        qtdCriancas: qtdCriancas,
+        qtdHomens: Number(qtdHomens),
+        qtdMulheres: Number(qtdMulheres),
+        qtdCriancas: Number(qtdCriancas),
         endereco: endereco,
-        custoLocal: custoLocal,
+        custoLocal: Number(custoLocal),
         dataEvento: dataEvento,
 
         carnes: {
@@ -123,7 +124,7 @@ function TelaCalculadora({ route, navigation }) {
 
                 toscana: {
                     selecionado: toscana
-                }, 
+                },
 
                 cuiabana: {
                     selecionado: cuiabana
@@ -149,7 +150,7 @@ function TelaCalculadora({ route, navigation }) {
 
             cerveja: {
                 selecionado: cerveja
-            }, 
+            },
 
             suco: {
                 selecionado: suco
@@ -161,12 +162,12 @@ function TelaCalculadora({ route, navigation }) {
 
             copoDesc: {
                 selecionado: copoDesc
-            }, 
+            },
 
             talheres: {
                 selecionado: talheres
             },
-            
+
             prato: {
                 selecionado: prato
             },
@@ -504,7 +505,67 @@ function TelaCalculadora({ route, navigation }) {
             />
 
 
-            {/* <Button title="Teste" onPress={console.log(isChecked)}/> */}
+            {/* INFORMAÇÕES DO EVENTO */}
+            <Text>Nome do Evento</Text>
+            <TextInput
+                value={nomeEvento}
+                onChangeText={(texto) => setNomeEvento(texto)}
+                placeholder="Digite o nome do evento"
+            />
+
+            <Text>Quantidade de Homens</Text>
+            <TextInput
+                value={qtdHomens}
+                onChangeText={(texto) => setQtdHomens(texto)}
+                placeholder="Digite a quantidade de homens"
+                keyboardType="numeric"
+            />
+
+            <Text>Quantidade de Mulheres</Text>
+            <TextInput
+                value={qtdMulheres}
+                onChangeText={(texto) => setQtdMulheres(texto)}
+                placeholder="Digite a quantidade de mulheres"
+                keyboardType="numeric"
+            />
+
+            <Text>Quantidade de Crianças</Text>
+            <TextInput
+                value={qtdCriancas}
+                onChangeText={(texto) => setQtdCriancas(texto)}
+                placeholder="Digite a quantidade de crianças"
+                keyboardType="numeric"
+            />
+
+            <Text>Enderço do evento</Text>
+            <TextInput
+                value={endereco}
+                onChangeText={(texto) => setEndereco(texto)}
+                placeholder="Digite o endereço do evento"
+            />
+
+            <Text>Informe o custo da locação</Text>
+            <TextInput
+                value={custoLocal}
+                onChangeText={(texto) => setCustoLocal(texto)}
+                placeholder="Informe o custo do local do churrasco"
+                keyboardType="numeric"
+            />
+
+            <Text>Data do evento</Text>
+            <TextInput
+                value={dataEvento}
+                onChangeText={(texto) => setDataEvento(texto)}
+                placeholder="Informe o custo do local do churrasco"
+                
+            />
+
+
+            <Button title="Calcular e salvar" onPress={async () => {
+                const resposta = await criarEvento(evento)
+
+                console.log(resposta)
+            }} />
         </ScrollView>
 
     )
