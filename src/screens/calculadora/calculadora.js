@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, Button, ScrollView, TextInput } from "react-native"
 import { CheckBox } from "react-native-elements";
 import criarEvento from "../../services/api/eventos/criarEvento";
@@ -8,8 +8,10 @@ function TelaCalculadora({ route, navigation }) {
 
     // VARIÁVEIS PARA CONTROLAR TODOS OS DADOS DO EVENTO
 
+    // LEMBRETE -> fAZER O useEffect
+
     // INFORMAÇÕES DO ORGANIZADOR DO EVENTO
-    const idOrganizador = route.params.id;
+    const idOrganizador = route.params.id || route.params.idOrganizador;
     const [nomeEvento, setNomeEvento] = useState('');
     const [qtdHomens, setQtdHomens] = useState('');
     const [qtdMulheres, setQtdMulheres] = useState('');
