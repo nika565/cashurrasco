@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, Text, Button, ScrollView, TextInput } from "react-native"
 import { CheckBox } from "react-native-elements";
 import criarEvento from "../../services/api/eventos/criarEvento";
+import Alerta from "../../components/alerta";
 
 function TelaCalculadora({ route, navigation }) {
 
@@ -224,10 +225,6 @@ function TelaCalculadora({ route, navigation }) {
             <Button title="Histórico" onPress={() => navigation.navigate("Historico", route.params)} />
             <Button title="Perfil" onPress={() => navigation.navigate("Perfil", route.params)} />
             <Button title="Sair" onPress={() => navigation.navigate("Login")} />
-
-            {/* Esse botão vai ficar no final da página */}
-            <Button title="Calcular" onPress={() => navigation.navigate("Resultado")} />
-
 
             {/* CARNE BOVINA */}
             <Text>Carne bovina</Text>
@@ -562,9 +559,21 @@ function TelaCalculadora({ route, navigation }) {
 
 
             <Button title="Calcular e salvar" onPress={async () => {
-                const resposta = await criarEvento(evento)
 
-                console.log(resposta)
+                const resposta = await criarEvento(evento);
+
+                if (resposta.status === 'success') {
+
+                    Alerta("Sucesso!", "Evento calculado e salvo com sucesso");
+                    navigation.navigate("Resultado", resposta.dados);
+
+                } else {
+
+                    Alerta("Ops! Algo deu errado", resposta.msg);
+
+                }
+
+                
             }} />
         </ScrollView>
 
