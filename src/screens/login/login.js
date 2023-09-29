@@ -43,6 +43,9 @@ function TelaLogin({ navigation }) {
 
                     if (resposta.status == 'success') {
 
+                        setEmail('');
+                        setSenha('');
+
                         Alerta('Sucesso!', resposta.msg);
 
                         navigation.navigate("Calculadora", resposta.dados);
