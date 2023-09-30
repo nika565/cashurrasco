@@ -8,10 +8,10 @@ function TelaCalculadora({ route, navigation }) {
 
     // VARIÁVEIS PARA CONTROLAR TODOS OS DADOS DO EVENTO
 
-    // LEMBRETE -> fAZER O useEffect
+    console.log(route.params.idOrganizador);
 
     // INFORMAÇÕES DO ORGANIZADOR DO EVENTO
-    const idOrganizador = route.params.id || route.params.idOrganizador;
+    const idOrganizador = route.params.id;
     const [nomeEvento, setNomeEvento] = useState('');
     const [qtdHomens, setQtdHomens] = useState('');
     const [qtdMulheres, setQtdMulheres] = useState('');

@@ -553,7 +553,7 @@ function TelaResultado({ route, navigation }) {
 
             <Button title="Voltar" onPress={ () => {
 
-                navigation.navigate('Calculadora', route.params.idOrganizador);
+                navigation.navigate('Calculadora', {id: route.params.idOrganizador});
 
             }} />
         </ScrollView>
