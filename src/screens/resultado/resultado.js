@@ -512,20 +512,20 @@ function TelaResultado({ route, navigation }) {
 
             <Text>Quantidade de Homens</Text>
             <TextInput
-                value={toString(qtdHomens)}
+                value={route.params.qtdHomens}
                 placeholder="Digite a quantidade de homens"
             />
 
             <Text>Quantidade de Mulheres</Text>
             <TextInput
-                value={toString(qtdMulheres)}
+                value={route.params.qtdMulheres}
                 placeholder="Digite a quantidade de mulheres"
                 
             />
 
             <Text>Quantidade de Crianças</Text>
             <TextInput
-                value={toString(qtdCriancas)}
+                value={route.params.qtdCriancas}
                 placeholder="Digite a quantidade de crianças"
                 
             />
@@ -538,7 +538,7 @@ function TelaResultado({ route, navigation }) {
 
             <Text>Informe o custo da locação</Text>
             <TextInput
-                value={toString(custoLocal)}
+                value={route.params.custoLocal}
                 placeholder="Informe o custo do local do churrasco"
                 
             />
