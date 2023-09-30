@@ -9,7 +9,7 @@ function TelaResultado({ route, navigation }) {
 
     // INFORMAÇÕES DO ORGANIZADOR DO EVENTO
     const idOrganizador = route.params.id;
-    const [nomeEvento, setNomeEvento] = useState(route.params.nomeEvento);
+    const [nomeEvento, setNomeEvento] = useState();
     const [qtdHomens, setQtdHomens] = useState(route.params.qtdHomens);
     const [qtdMulheres, setQtdMulheres] = useState(route.params.qtdMulheres);
     const [qtdCriancas, setQtdCriancas] = useState(route.params.qtdCriancas);
@@ -17,543 +17,296 @@ function TelaResultado({ route, navigation }) {
     const [custoLocal, setCustoLocal] = useState(route.params.custoLocal);
     const [dataEvento, setDataEvento] = useState(route.params.dataEvento);
 
-    // CARNE BOVINA
-    const [maminha, setMaminha] = useState(route.params.carnes.bovino.maminha.selecionado);
-    const [contraFile, setContraFile] = useState(route.params.carnes.bovino.contraFile.selecionado);
-    const [alcatra, setAlcatra] = useState(route.params.carnes.bovino.alcatra.selecionado);
-
-    // CARNE SUÍNA
-    const [costela, setCostela] = useState(route.params.carnes.suino.costela.selecionado);
-    const [fileSuino, setFileSuino] = useState(route.params.carnes.suino.fileSuino.selecionado);
-    const [lombo, setLombo] = useState(route.params.carnes.suino.lombo.selecionado);
-
-    // LINGUÍÇAS
-    const [toscana, setToscana] = useState(route.params.carnes.linguicas.toscana.selecionado);
-    const [cuiabana, setCuiabana] = useState(route.params.carnes.linguicas.cuiabana.selecionado);
-    const [linguicaFrango, setLinguicaFrango] = useState(route.params.carnes.linguicas.linguicaFrango.selecionado);
-
-    // CARNE DE FRANGO
-    const [sobrecoxa, setSobrecoxa] = useState(route.params.carnes.frango.sobrecoxa.selecionado);
-    const [asa, setAsa] = useState(route.params.carnes.frango.asa.selecionado);
-    const [coracao, setCoracao] = useState(route.params.carnes.frango.coracao.selecionado);
-
-    // BEBIDAS
-    const [agua, setAgua] = useState(route.params.bebidas.agua.selecionado);
-    const [refri, setRefri] = useState(route.params.bebidas.refri.selecionado);
-    const [cerveja, setCerveja] = useState(route.params.bebidas.cerveja.selecionado);
-    const [suco, setSuco] = useState(route.params.bebidas.suco.selecionado);
-
-    // SUPRIMENTOS
-    const [copoDesc, setCopoDesc] = useState(route.params.suprimentos.copoDesc.selecionado);
-    const [talheres, setTalheres] = useState(route.params.suprimentos.talheres.selecionado);
-    const [prato, setPrato] = useState(route.params.suprimentos.prato.selecionado);
-    const [carvao, setCarvao] = useState(route.params.suprimentos.carvao.selecionado);
-    const [guardanapos, setGuardanapos] = useState(route.params.suprimentos.guardanapos.selecionado);
-    const [palitos, setPalitos] = useState(route.params.suprimentos.palitos.selecionado);
-
-    // ACOMPANHAMENTOS
-    const [arroz, setArroz] = useState(route.params.acompanhamentos.arroz.selecionado);
-    const [farofa, setFarofa] = useState(route.params.acompanhamentos.farofa.selecionado);
-    const [pao, setPao] = useState(route.params.acompanhamentos.pao.selecionado);
-    const [paoAlho, setPaoAlho] = useState(route.params.acompanhamentos.paoAlho.selecionado);
-    const [vinagrete, setVinagrete] = useState(route.params.acompanhamentos.vinagrete.selecionado);
-    const [queijoCoalho, setQueijoCoalho] = useState(route.params.acompanhamentos.queijoCoalho.selecionado);
-
     console.log(route.params);
 
     // Objeto que vai para op back-end salvar o evento
-    const evento = {
-        idOrganizador: idOrganizador,
-        nomeEvento: nomeEvento,
-        qtdHomens: Number(qtdHomens),
-        qtdMulheres: Number(qtdMulheres),
-        qtdCriancas: Number(qtdCriancas),
-        endereco: endereco,
-        custoLocal: Number(custoLocal),
-        dataEvento: dataEvento,
+    // const evento = {
+    //     idOrganizador: idOrganizador,
+    //     nomeEvento: nomeEvento,
+    //     qtdHomens: Number(qtdHomens),
+    //     qtdMulheres: Number(qtdMulheres),
+    //     qtdCriancas: Number(qtdCriancas),
+    //     endereco: endereco,
+    //     custoLocal: Number(custoLocal),
+    //     dataEvento: dataEvento,
 
-        carnes: {
+    //     carnes: {
 
-            bovino: {
+    //         bovino: {
 
-                contraFile: {
-                    selecionado: contraFile
-                },
+    //             contraFile: {
+    //                 selecionado: contraFile
+    //             },
 
-                maminha: {
-                    selecionado: maminha
-                },
+    //             maminha: {
+    //                 selecionado: maminha
+    //             },
 
-                alcatra: {
-                    selecionado: alcatra
-                }
+    //             alcatra: {
+    //                 selecionado: alcatra
+    //             }
 
-            },
+    //         },
 
-            suino: {
+    //         suino: {
 
-                costela: {
-                    selecionado: costela
-                },
+    //             costela: {
+    //                 selecionado: costela
+    //             },
 
-                fileSuino: {
-                    selcionado: fileSuino
-                },
+    //             fileSuino: {
+    //                 selcionado: fileSuino
+    //             },
 
-                lombo: {
-                    selecionado: lombo
-                }
+    //             lombo: {
+    //                 selecionado: lombo
+    //             }
 
-            },
+    //         },
 
-            frango: {
+    //         frango: {
 
-                sobrecoxa: {
-                    selecionado: sobrecoxa
-                },
+    //             sobrecoxa: {
+    //                 selecionado: sobrecoxa
+    //             },
 
-                coracao: {
-                    selecionado: coracao
-                },
+    //             coracao: {
+    //                 selecionado: coracao
+    //             },
 
-                asa: {
-                    selecionado: asa
-                }
+    //             asa: {
+    //                 selecionado: asa
+    //             }
 
-            },
+    //         },
 
-            linguicas: {
+    //         linguicas: {
 
-                toscana: {
-                    selecionado: toscana
-                },
+    //             toscana: {
+    //                 selecionado: toscana
+    //             },
 
-                cuiabana: {
-                    selecionado: cuiabana
-                },
+    //             cuiabana: {
+    //                 selecionado: cuiabana
+    //             },
 
-                linguicaFrango: {
-                    selecionado: linguicaFrango
-                }
+    //             linguicaFrango: {
+    //                 selecionado: linguicaFrango
+    //             }
 
-            }
+    //         }
 
-        },
+    //     },
 
-        bebidas: {
+    //     bebidas: {
 
-            agua: {
-                selecionado: agua
-            },
+    //         agua: {
+    //             selecionado: agua
+    //         },
 
-            refri: {
-                selecionado: refri
-            },
+    //         refri: {
+    //             selecionado: refri
+    //         },
 
-            cerveja: {
-                selecionado: cerveja
-            },
+    //         cerveja: {
+    //             selecionado: cerveja
+    //         },
 
-            suco: {
-                selecionado: suco
-            }
+    //         suco: {
+    //             selecionado: suco
+    //         }
 
-        },
+    //     },
 
-        suprimentos: {
+    //     suprimentos: {
 
-            copoDesc: {
-                selecionado: copoDesc
-            },
+    //         copoDesc: {
+    //             selecionado: copoDesc
+    //         },
 
-            talheres: {
-                selecionado: talheres
-            },
+    //         talheres: {
+    //             selecionado: talheres
+    //         },
 
-            prato: {
-                selecionado: prato
-            },
+    //         prato: {
+    //             selecionado: prato
+    //         },
 
-            carvao: {
-                selecionado: carvao
-            },
+    //         carvao: {
+    //             selecionado: carvao
+    //         },
 
-            guardanapos: {
-                selecionado: guardanapos
-            },
+    //         guardanapos: {
+    //             selecionado: guardanapos
+    //         },
 
-            palitos: {
-                selecionado: palitos
-            }
+    //         palitos: {
+    //             selecionado: palitos
+    //         }
 
-        },
+    //     },
 
-        acompanhamentos: {
+    //     acompanhamentos: {
 
-            arroz: {
-                selecionado: arroz
-            },
+    //         arroz: {
+    //             selecionado: arroz
+    //         },
 
-            farofa: {
-                selecionado: farofa
-            },
+    //         farofa: {
+    //             selecionado: farofa
+    //         },
 
-            pao: {
-                selecionado: pao
-            },
+    //         pao: {
+    //             selecionado: pao
+    //         },
 
-            paoAlho: {
-                selecionado: paoAlho
-            },
+    //         paoAlho: {
+    //             selecionado: paoAlho
+    //         },
 
-            vinagrete: {
-                selecionado: vinagrete
-            },
+    //         vinagrete: {
+    //             selecionado: vinagrete
+    //         },
 
-            queijoCoalho: {
-                selecionado: queijoCoalho
-            }
+    //         queijoCoalho: {
+    //             selecionado: queijoCoalho
+    //         }
 
-        }
+    //     }
 
-    }
+    // }
 
     return (
         <ScrollView>
             <Text>Calculadora de churras</Text>
             {/* Estes 3 botões abaixo vão ficar no offcanvas */}
-            <Button title="Receitas" onPress={() => navigation.navigate("ListaReceitas")} />
+            {/* <Button title="Receitas" onPress={() => navigation.navigate("ListaReceitas")} />
             <Button title="Histórico" onPress={() => navigation.navigate("Historico", route.params)} />
             <Button title="Perfil" onPress={() => navigation.navigate("Perfil", route.params)} />
-            <Button title="Sair" onPress={() => navigation.navigate("Login")} />
+            <Button title="Sair" onPress={() => navigation.navigate("Login")} /> */}
+
 
             {/* CARNE BOVINA */}
             <Text>Carne bovina</Text>
-            <CheckBox
-                title="Contra-filé"
-                checkedIcon="check"
-                uncheckedIcon="square-o"
-                checkedColor="orange"
-                checked={contraFile}
-                
-            />
 
-            <CheckBox
-                title="Maminha"
-                checkedIcon="check"
-                uncheckedIcon="square-o"
-                checkedColor="orange"
-                checked={maminha}
-                
-            />
+            <Text>Contra filé: Qtd:{route.params.carnes.bovino.contraFile.qtd} Preço total:{route.params.carnes.bovino.contraFile.precoTotal}</Text>
 
-            <CheckBox
-                title="Alcatra"
-                checkedIcon="check"
-                uncheckedIcon="square-o"
-                checkedColor="orange"
-                checked={alcatra}
-                
-            />
+            <Text>Maminha: Qtd:{route.params.carnes.bovino.maminha.qtd} Preço total:{route.params.carnes.bovino.maminha.precoTotal}</Text>
+
+            <Text>Alcatra: Qtd:{route.params.carnes.bovino.alcatra.qtd} Preço total:{route.params.carnes.bovino.alcatra.precoTotal}</Text>
 
 
             {/* CARNE SUINA */}
             <Text>Carne suína</Text>
-            <CheckBox
-                title="Costela"
-                checkedIcon="check"
-                uncheckedIcon="square-o"
-                checkedColor="orange"
-                checked={costela}
-                
-            />
 
-            <CheckBox
-                title="Filé suino"
-                checkedIcon="check"
-                uncheckedIcon="square-o"
-                checkedColor="orange"
-                checked={fileSuino}
-                
-            />
+            <Text>Costela: Qtd:{route.params.carnes.suino.costela.qtd} Preço total:{route.params.carnes.suino.costela.precoTotal}</Text>
+        
+            <Text>Filé Suino: Qtd:{route.params.carnes.suino.fileSuino.qtd} Preço total:{route.params.carnes.suino.fileSuino.precoTotal}</Text>
 
-            <CheckBox
-                title="Lombo"
-                checkedIcon="check"
-                uncheckedIcon="square-o"
-                checkedColor="orange"
-                checked={lombo}
-                
-            />
+
+            <Text>Lombo: Qtd:{route.params.carnes.suino.lombo.qtd} Preço total:{route.params.carnes.suino.lombo.precoTotal}</Text>
 
 
             {/* LINGUÍÇAS */}
             <Text>Linguícas</Text>
-            <CheckBox
-                title="Linguíça Toscana"
-                checkedIcon="check"
-                uncheckedIcon="square-o"
-                checkedColor="orange"
-                checked={toscana}
-                
-            />
 
-            <CheckBox
-                title="Linguíça Cuiabana"
-                checkedIcon="check"
-                uncheckedIcon="square-o"
-                checkedColor="orange"
-                checked={cuiabana}
-                
-            />
+            <Text>Toscana: Qtd:{route.params.carnes.linguicas.toscana.qtd} Preço total:{route.params.carnes.linguicas.toscana.precoTotal}</Text>
 
-            <CheckBox
-                title="Linguíça de Frango"
-                checkedIcon="check"
-                uncheckedIcon="square-o"
-                checkedColor="orange"
-                checked={linguicaFrango}
-                
-            />
+        
+            <Text>Cuiabana: Qtd:{route.params.carnes.linguicas.cuiabana.qtd} Preço total:{route.params.carnes.linguicas.cuiabana.precoTotal}</Text>
+
+            
+            <Text>Linguica de Frango: Qtd:{route.params.carnes.linguicas.linguicaFrango.qtd} Preço total:{route.params.carnes.linguicas.linguicaFrango.precoTotal}</Text>
 
 
 
             {/* CARNE DE FRANGO */}
             <Text>Frango</Text>
-            <CheckBox
-                title="Sobrecoxa"
-                checkedIcon="check"
-                uncheckedIcon="square-o"
-                checkedColor="orange"
-                checked={sobrecoxa}
-                
-            />
 
-            <CheckBox
-                title="Coração"
-                checkedIcon="check"
-                uncheckedIcon="square-o"
-                checkedColor="orange"
-                checked={coracao}
-                
-            />
+            <Text>Sobrecoxa: Qtd:{route.params.carnes.frango.sobrecoxa.qtd} Preço total:{route.params.carnes.frango.sobrecoxa.precoTotal}</Text>
 
-            <CheckBox
-                title="Asa"
-                checkedIcon="check"
-                uncheckedIcon="square-o"
-                checkedColor="orange"
-                checked={asa}
-                
-            />
+            <Text>Coração: Qtd:{route.params.carnes.frango.coracao.qtd} Preço total:{route.params.carnes.frango.coracao.precoTotal}</Text>
 
+            <Text>Asa: Qtd:{route.params.carnes.frango.asa.qtd} Preço total:{route.params.carnes.frango.asa.precoTotal}</Text>
 
 
             {/* BEBDIDAS */}
             <Text>Bebidas</Text>
-            <CheckBox
-                title="Água"
-                checkedIcon="check"
-                uncheckedIcon="square-o"
-                checkedColor="orange"
-                checked={agua}
-               
-            />
+            
+            <Text>Água: Qtd:{route.params.bebidas.agua.qtd} Preço total:{route.params.bebidas.agua.precoTotal}</Text>
 
-            <CheckBox
-                title="Refrigerante"
-                checkedIcon="check"
-                uncheckedIcon="square-o"
-                checkedColor="orange"
-                checked={refri}
-                
-            />
 
-            <CheckBox
-                title="Cerveja"
-                checkedIcon="check"
-                uncheckedIcon="square-o"
-                checkedColor="orange"
-                checked={cerveja}
-                
-            />
+            <Text>Refrigerante: Qtd:{route.params.bebidas.refri.qtd} Preço total:{route.params.bebidas.refri.precoTotal}</Text>
 
-            <CheckBox
-                title="Suco"
-                checkedIcon="check"
-                uncheckedIcon="square-o"
-                checkedColor="orange"
-                checked={suco}
-                
-            />
+            
+            <Text>Cerveja: Qtd:{route.params.bebidas.cerveja.qtd} Preço total:{route.params.bebidas.cerveja.precoTotal}</Text>
 
+            <Text>Suco: Qtd:{route.params.bebidas.suco.qtd} Preço total:{route.params.bebidas.suco.precoTotal}</Text>
 
 
             {/* Suprimentos */}
             <Text>Suprimentos</Text>
-            <CheckBox
-                title="Copo Descartável"
-                checkedIcon="check"
-                uncheckedIcon="square-o"
-                checkedColor="orange"
-                checked={copoDesc}
-                
-            />
+            
+            <Text>Copo Descartável: Qtd:{route.params.suprimentos.copoDesc.qtd} Preço total:{route.params.suprimentos.copoDesc.precoTotal}</Text>
 
-            <CheckBox
-                title="Talheres Descartáveis"
-                checkedIcon="check"
-                uncheckedIcon="square-o"
-                checkedColor="orange"
-                checked={talheres}
-                
-            />
+            <Text>Talheres Descartáveis: Qtd:{route.params.suprimentos.talheres.qtd} Preço total:{route.params.suprimentos.talheres.precoTotal}</Text>
 
-            <CheckBox
-                title="Prato Descartável"
-                checkedIcon="check"
-                uncheckedIcon="square-o"
-                checkedColor="orange"
-                checked={prato}
-                
-            />
+            <Text>Prato Descartável: Qtd:{route.params.suprimentos.prato.qtd} Preço total:{route.params.suprimentos.prato.precoTotal}</Text>
 
-            <CheckBox
-                title="Carvão"
-                checkedIcon="check"
-                uncheckedIcon="square-o"
-                checkedColor="orange"
-                checked={carvao}
-                
-            />
+            <Text>Carvão: Qtd:{route.params.suprimentos.carvao.qtd} Preço total:{route.params.suprimentos.carvao.precoTotal}</Text>
 
-            <CheckBox
-                title="Guardanapos"
-                checkedIcon="check"
-                uncheckedIcon="square-o"
-                checkedColor="orange"
-                checked={guardanapos}
-                
-            />
+            <Text>Guardanapos: Qtd:{route.params.suprimentos.guardanapos.qtd} Preço total:{route.params.suprimentos.guardanapos.precoTotal}</Text>
 
-            <CheckBox
-                title="Palitos de dente"
-                checkedIcon="check"
-                uncheckedIcon="square-o"
-                checkedColor="orange"
-                checked={palitos}
-                
-            />
+            <Text>Palitos de Dente: Qtd:{route.params.suprimentos.palitos.qtd} Preço total:{route.params.suprimentos.palitos.precoTotal}</Text>
 
 
             {/* ACOMPANHAMENTOS */}
             <Text>Acompanhamentos</Text>
-            <CheckBox
-                title="Arroz"
-                checkedIcon="check"
-                uncheckedIcon="square-o"
-                checkedColor="orange"
-                checked={arroz}
-                
-            />
 
-            <CheckBox
-                title="Farofa"
-                checkedIcon="check"
-                uncheckedIcon="square-o"
-                checkedColor="orange"
-                checked={farofa}
-               
-            />
+            <Text>Arroz: Qtd:{route.params.acompanhamentos.arroz.qtd} Preço total:{route.params.acompanhamentos.arroz.precoTotal}</Text>
 
-            <CheckBox
-                title="Pão"
-                checkedIcon="check"
-                uncheckedIcon="square-o"
-                checkedColor="orange"
-                checked={pao}
-                
-            />
+            <Text>Farofa: Qtd:{route.params.acompanhamentos.farofa.qtd} Preço total:{route.params.acompanhamentos.farofa.precoTotal}</Text>
 
-            <CheckBox
-                title="Pão de alho"
-                checkedIcon="check"
-                uncheckedIcon="square-o"
-                checkedColor="orange"
-                checked={paoAlho}
-                
-            />
+            <Text>Pão: Qtd:{route.params.acompanhamentos.pao.qtd} Preço total:{route.params.acompanhamentos.pao.precoTotal}</Text>
 
-            <CheckBox
-                title="Vinagrete"
-                checkedIcon="check"
-                uncheckedIcon="square-o"
-                checkedColor="orange"
-                checked={vinagrete}
-                
-            />
+            <Text>Pão de Alho: Qtd:{route.params.acompanhamentos.paoAlho.qtd} Preço total:{route.params.acompanhamentos.paoAlho.precoTotal}</Text>
 
-            <CheckBox
-                title="Queijo Coalho"
-                checkedIcon="check"
-                uncheckedIcon="square-o"
-                checkedColor="orange"
-                checked={queijoCoalho}
-               
-            />
+            <Text>Vinagrete: Qtd:{route.params.acompanhamentos.vinagrete.qtd} Preço total:{route.params.acompanhamentos.vinagrete.precoTotal}</Text>
+
+            <Text>Queijo Coalho: Qtd:{route.params.acompanhamentos.queijoCoalho.qtd} Preço total:{route.params.acompanhamentos.queijoCoalho.precoTotal}</Text>
 
 
             {/* INFORMAÇÕES DO EVENTO */}
             <Text>Nome do Evento</Text>
-            <TextInput
-                value={nomeEvento}
-                placeholder="Digite o nome do evento"
-            />
+            <Text>{route.params.nomeEvento}</Text>
 
             <Text>Quantidade de Homens</Text>
-            <TextInput
-                value={route.params.qtdHomens}
-                placeholder="Digite a quantidade de homens"
-            />
+            <Text>{route.params.qtdHomens}</Text>
 
             <Text>Quantidade de Mulheres</Text>
-            <TextInput
-                value={route.params.qtdMulheres}
-                placeholder="Digite a quantidade de mulheres"
-                
-            />
+            <Text>{route.params.qtdMulheres}</Text>
 
             <Text>Quantidade de Crianças</Text>
-            <TextInput
-                value={route.params.qtdCriancas}
-                placeholder="Digite a quantidade de crianças"
-                
-            />
+            <Text>{route.params.qtdCriancas}</Text>
 
             <Text>Enderço do evento</Text>
-            <TextInput
-                value={endereco}
-                placeholder="Digite o endereço do evento"
-            />
+            <Text>{route.params.endereco}</Text>
 
             <Text>Informe o custo da locação</Text>
-            <TextInput
-                value={route.params.custoLocal}
-                placeholder="Informe o custo do local do churrasco"
-                
-            />
+            <Text>{route.params.custoLocal}</Text>
 
             <Text>Data do evento</Text>
-            <TextInput
-                value={dataEvento}
-                placeholder="Informe o custo do local do churrasco"
+            <Text>{route.params.dataEvento}</Text>
 
-            />
+            <Text>Custo individual</Text>
+            <Text>{route.params.custoPessoa}</Text>
 
+            <Text>Custo individual</Text>
+            <Text>{route.params.custoTotal}</Text>
 
-            <Button title="Voltar" onPress={ () => {
+            <Button title="Voltar" onPress={() => {
 
-                navigation.navigate('Calculadora', {id: route.params.idOrganizador});
+                navigation.navigate('Calculadora', { id: route.params.idOrganizador });
 
             }} />
         </ScrollView>
