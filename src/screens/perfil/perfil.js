@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Button, StyleSheet, TextInput } from "react-native";
+import { View, Text, Button, StyleSheet, TextInput, ScrollView, TouchableOpacity, Image } from "react-native";
 import editarUsuario from "../../services/api/usuarios/editarUsuario";
 import buscarUsuario from "../../services/api/usuarios/buscarUsuario";
 import apagarUsuario from "../../services/api/usuarios/apagarUsuario";
@@ -19,31 +19,33 @@ function Perfil({ route, navigation }) {
     };
 
     return (
-        <View style={styles.container}>
+        <ScrollView style={estilos.tela}>
 
-            <Text>Perfil:</Text>
+            {/* <Text>Perfil:</Text> */}
 
-            <View style={styles.container}>
-                <Text style={styles.label}>Nome:</Text>
+            <Image style={estilos.imgPerfil} source={require("../../assets/icons/chef.png")} />
+
+            <View style={estilos.formulario}>
+                <Text style={estilos.label}>Nome</Text>
                 <TextInput
-                    style={styles.input}
+                    style={estilos.input}
                     onChangeText={(text) => setNome(text)}
                     value={nome}
                     placeholder="Digite seu nome"
                 />
 
-                <Text style={styles.label}>Email:</Text>
+                <Text style={estilos.label}>E-mail</Text>
                 <TextInput
-                    style={styles.input}
+                    style={estilos.input}
                     onChangeText={(text) => setEmail(text)}
                     value={email}
                     placeholder="Digite seu email"
                     keyboardType="email-address"
                 />
 
-                <Text style={styles.label}>Celular:</Text>
+                <Text style={estilos.label}>Celular</Text>
                 <TextInput
-                    style={styles.input}
+                    style={estilos.input}
                     onChangeText={(text) => setCelular(text)}
                     value={celular}
                     placeholder="Digite seu celular"
@@ -52,7 +54,7 @@ function Perfil({ route, navigation }) {
 
 
 
-                <Button title="Editar" onPress={async () => {
+                <TouchableOpacity style={[estilos.btn, estilos.corAmarelo]} onPress={async () => {
                     const resposta = await editarUsuario(route.params.id, usuario)
 
                     if (resposta.status == 'error') {
@@ -72,10 +74,10 @@ function Perfil({ route, navigation }) {
 
                     }
 
-                }} />
+                }}><Text style={estilos.txtBtn}>Editar</Text></TouchableOpacity>
 
 
-                <Button title="Excluir conta" onPress={async () => {
+                <TouchableOpacity style={[estilos.btn, estilos.corVermelho]} onPress={async () => {
                     const resposta = await apagarUsuario(route.params.id)
 
                     if (resposta.status == 'error') {
@@ -90,32 +92,80 @@ function Perfil({ route, navigation }) {
 
                     }
 
-                }} />
+                }}><Text style={estilos.txtBtn}>Excluir conta</Text></TouchableOpacity>
 
             </View>
 
-        </View>
+        </ScrollView>
     )
 }
 
-const styles = StyleSheet.create({
+const estilos = StyleSheet.create({
 
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        padding: 16,
+    tela: {
+        backgroundColor: '#260101',
     },
+
+    formulario:{
+        width: '75%',
+        alignSelf: "center",
+    },
+
     label: {
         fontSize: 18,
-        marginBottom: 8,
+        color: '#FFF',
+        
+        marginBottom: 10,
     },
     input: {
-        fontSize: 16,
-        borderWidth: 1,
-        borderColor: '#ccc',
-        padding: 8,
-        marginBottom: 16,
+        fontSize: 15,
+        color: '#FFF',
+
+        borderWidth: 0,
+        borderRadius: 5,
+
+        padding: 10,
+        marginBottom: 30,
+
+        backgroundColor: '#4B0000',
     },
+
+    corAmarelo:{
+        backgroundColor: '#FF7801'
+    },
+
+    corVermelho:{
+        backgroundColor: '#BF0404'
+    },
+
+    btn:{
+        width: '100%',
+        height: 45,
+
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+
+        borderRadius: 5,
+        marginBottom: 30,
+    },
+
+    txtBtn:{
+        fontSize: 15,
+    },
+
+    imgPerfil:{
+        width: 100,
+        height: 100,
+
+        backgroundColor: '#F48E35',
+
+        padding: 20,
+        alignSelf: "center",
+
+        borderRadius: 100,
+        margin: 30,
+    }
 
 });
 

@@ -229,6 +229,8 @@ function TelaCalculadora({ route, navigation }) {
             <Button title="Perfil" onPress={() => navigation.navigate("Perfil", route.params)} />
             <Button title="Sair" onPress={() => navigation.navigate("Login")} />
 
+            <Text style={estilos.tituloVermelho}>Quantas pessoas vão ao churrasco?</Text>
+
             <View style={estilos.containerQtdPessoa}>
                 <View style={estilos.fieldset}>
                     <Text style={estilos.fieldsetLabel}>Homens</Text>
