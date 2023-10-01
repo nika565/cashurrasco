@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, Button } from 'react-native';
 import todosEventos from '../../services/api/eventos/todosEventos'
+import buscarEvento from '../../services/api/eventos/buscarEvento'
 import Alerta from '../../components/alerta'
 
 const TelaHistorico = ({route, navigation}) => {
@@ -38,7 +39,14 @@ const TelaHistorico = ({route, navigation}) => {
                 <Text>Nome do Evento: {item.nomeEvento}</Text>
                 <Text>ID do Organizador: {item.idOrganizador}</Text>
                 <Text>Custo Total: {item.custoTotal}</Text>
-                <Button title='Ver mais' />
+                <Button title='Ver mais' onPress={async () => {
+
+                    const evento = await buscarEvento(item._id)
+
+                    
+
+                    navigation.navigate('Evento', evento.evento)
+                }} />
             </View>
         );
     }

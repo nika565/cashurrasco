@@ -1,66 +1,70 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, Button, ScrollView, TextInput } from "react-native"
 import { CheckBox } from "react-native-elements";
-import criarEvento from "../../services/api/eventos/criarEvento";
+import editarEvento from "../../services/api/eventos/editarEvento";
+import apagarEvento from "../../services/api/eventos/apagarEvento";
 import Alerta from "../../components/alerta";
 
-function TelaCalculadora({ route, navigation }) {
+function Evento({ route, navigation }) {
 
     // VARIÁVEIS PARA CONTROLAR TODOS OS DADOS DO EVENTO
+    console.log(`\n\n\n\n------------------------- PARÂMETRO DE ROTAAAAAAS ------------------------\n\n\n\n`)
 
-    console.log(route.params.idOrganizador);
+    console.log(route.params)
+
+    console.log(`\n\n\n\n------------------------- PARÂMETRO DE ROTAAAAAAS ------------------------\n\n\n\n`)
 
     // INFORMAÇÕES DO ORGANIZADOR DO EVENTO
-    const idOrganizador = route.params.id;
-    const [nomeEvento, setNomeEvento] = useState('');
-    const [qtdHomens, setQtdHomens] = useState('');
-    const [qtdMulheres, setQtdMulheres] = useState('');
-    const [qtdCriancas, setQtdCriancas] = useState('');
-    const [endereco, setEndereco] = useState('');
-    const [custoLocal, setCustoLocal] = useState('');
-    const [dataEvento, setDataEvento] = useState('');
+    const idOrganizador = route.params.idOrganizador;
+    const [nomeEvento, setNomeEvento] = useState(route.params.nomeEvento);
+    const [qtdHomens, setQtdHomens] = useState(route.params.qtdHomens);
+    const [qtdMulheres, setQtdMulheres] = useState(route.params.qtdMulheres);
+    const [qtdCriancas, setQtdCriancas] = useState(route.params.qtdCriancas);
+    const [endereco, setEndereco] = useState(route.params.endereco);
+    const [custoLocal, setCustoLocal] = useState(route.params.custoLocal);
+    const [dataEvento, setDataEvento] = useState(route.params.dataEvento);
 
     // CARNE BOVINA
-    const [maminha, setMaminha] = useState(false);
-    const [contraFile, setContraFile] = useState(false);
-    const [alcatra, setAlcatra] = useState(false);
+    const [maminha, setMaminha] = useState(route.params.carnes.bovino.maminha.selecionado);
+    const [contraFile, setContraFile] = useState(route.params.carnes.bovino.contraFile.selecionado);
+    const [alcatra, setAlcatra] = useState(route.params.carnes.bovino.alcatra.selecionado);
 
     // CARNE SUÍNA
-    const [costela, setCostela] = useState(false);
-    const [fileSuino, setFileSuino] = useState(false);
-    const [lombo, setLombo] = useState(false);
+    const [costela, setCostela] = useState(route.params.carnes.suino.costela.selecionado);
+    const [fileSuino, setFileSuino] = useState(route.params.carnes.suino.fileSuino.selecionado);
+    const [lombo, setLombo] = useState(route.params.carnes.suino.lombo.selecionado);
 
     // LINGUÍÇAS
-    const [toscana, setToscana] = useState(false);
-    const [cuiabana, setCuiabana] = useState(false);
-    const [linguicaFrango, setLinguicaFrango] = useState(false);
+    const [toscana, setToscana] = useState(route.params.carnes.linguicas.toscana.selecionado);
+    const [cuiabana, setCuiabana] = useState(route.params.carnes.linguicas.cuiabana.selecionado);
+    const [linguicaFrango, setLinguicaFrango] = useState(route.params.carnes.linguicas.linguicaFrango.selecionado);
 
     // CARNE DE FRANGO
-    const [sobrecoxa, setSobrecoxa] = useState(false);
-    const [asa, setAsa] = useState(false);
-    const [coracao, setCoracao] = useState(false);
+    const [sobrecoxa, setSobrecoxa] = useState(route.params.carnes.frango.sobrecoxa.selecionado);
+    const [asa, setAsa] = useState(route.params.carnes.frango.asa.selecionado);
+    const [coracao, setCoracao] = useState(route.params.carnes.frango.coracao.selecionado);
 
     // BEBIDAS
-    const [agua, setAgua] = useState(false);
-    const [refri, setRefri] = useState(false);
-    const [cerveja, setCerveja] = useState(false);
-    const [suco, setSuco] = useState(false);
+    const [agua, setAgua] = useState(route.params.bebidas.agua.selecionado);
+    const [refri, setRefri] = useState(route.params.bebidas.refri.selecionado);
+    const [cerveja, setCerveja] = useState(route.params.bebidas.cerveja.selecionado);
+    const [suco, setSuco] = useState(route.params.bebidas.suco.selecionado);
 
     // SUPRIMENTOS
-    const [copoDesc, setCopoDesc] = useState(false);
-    const [talheres, setTalheres] = useState(false);
-    const [prato, setPrato] = useState(false);
-    const [carvao, setCarvao] = useState(false);
-    const [guardanapos, setGuardanapos] = useState(false);
-    const [palitos, setPalitos] = useState(false);
+    const [copoDesc, setCopoDesc] = useState(route.params.suprimentos.copoDesc.selecionado);
+    const [talheres, setTalheres] = useState(route.params.suprimentos.talheres.selecionado);
+    const [prato, setPrato] = useState(route.params.suprimentos.prato.selecionado);
+    const [carvao, setCarvao] = useState(route.params.suprimentos.carvao.selecionado);
+    const [guardanapos, setGuardanapos] = useState(route.params.suprimentos.guardanapos.selecionado);
+    const [palitos, setPalitos] = useState(route.params.suprimentos.palitos.selecionado);
 
     // ACOMPANHAMENTOS
-    const [arroz, setArroz] = useState(false);
-    const [farofa, setFarofa] = useState(false);
-    const [pao, setPao] = useState(false);
-    const [paoAlho, setPaoAlho] = useState(false);
-    const [vinagrete, setVinagrete] = useState(false);
-    const [queijoCoalho, setQueijoCoalho] = useState(false);
+    const [arroz, setArroz] = useState(route.params.acompanhamentos.arroz.selecionado);
+    const [farofa, setFarofa] = useState(route.params.acompanhamentos.farofa.selecionado);
+    const [pao, setPao] = useState(route.params.acompanhamentos.pao.selecionado);
+    const [paoAlho, setPaoAlho] = useState(route.params.acompanhamentos.paoAlho.selecionado);
+    const [vinagrete, setVinagrete] = useState(route.params.acompanhamentos.vinagrete.selecionado);
+    const [queijoCoalho, setQueijoCoalho] = useState(route.params.acompanhamentos.queijoCoalho.selecionado);
 
     // Objeto que vai para op back-end salvar o evento
     const evento = {
@@ -514,7 +518,7 @@ function TelaCalculadora({ route, navigation }) {
 
             <Text>Quantidade de Homens</Text>
             <TextInput
-                value={qtdHomens}
+                value={String(qtdHomens)}
                 onChangeText={(texto) => setQtdHomens(texto)}
                 placeholder="Digite a quantidade de homens"
                 keyboardType="numeric"
@@ -522,7 +526,7 @@ function TelaCalculadora({ route, navigation }) {
 
             <Text>Quantidade de Mulheres</Text>
             <TextInput
-                value={qtdMulheres}
+                value={String(qtdMulheres)}
                 onChangeText={(texto) => setQtdMulheres(texto)}
                 placeholder="Digite a quantidade de mulheres"
                 keyboardType="numeric"
@@ -530,7 +534,7 @@ function TelaCalculadora({ route, navigation }) {
 
             <Text>Quantidade de Crianças</Text>
             <TextInput
-                value={qtdCriancas}
+                value={String(qtdCriancas)}
                 onChangeText={(texto) => setQtdCriancas(texto)}
                 placeholder="Digite a quantidade de crianças"
                 keyboardType="numeric"
@@ -545,7 +549,7 @@ function TelaCalculadora({ route, navigation }) {
 
             <Text>Informe o custo da locação</Text>
             <TextInput
-                value={custoLocal}
+                value={String(custoLocal)}
                 onChangeText={(texto) => setCustoLocal(texto)}
                 placeholder="Informe o custo do local do churrasco"
                 keyboardType="numeric"
@@ -556,17 +560,19 @@ function TelaCalculadora({ route, navigation }) {
                 value={dataEvento}
                 onChangeText={(texto) => setDataEvento(texto)}
                 placeholder="Informe o custo do local do churrasco"
-                
+
             />
 
 
-            <Button title="Calcular e salvar" onPress={async () => {
+            <Button title="Editar evento" onPress={async () => {
 
-                const resposta = await criarEvento(evento);
+                
+
+                const resposta = await editarEvento(route.params._id, evento);
 
                 if (resposta.status === 'success') {
 
-                    Alerta("Sucesso!", "Evento calculado e salvo com sucesso");
+                    Alerta("Sucesso!", "Evento editado e salvo com sucesso");
                     navigation.navigate("Resultado", resposta.dados);
 
                 } else {
@@ -575,11 +581,29 @@ function TelaCalculadora({ route, navigation }) {
 
                 }
 
-                
+
+            }} />
+
+            <Button title="Apagar evento" onPress={async () => {
+
+                const resposta = await apagarEvento(route.params._id);
+
+                if (resposta.status === 'success') {
+
+                    Alerta("Sucesso!", resposta.msg);
+                    navigation.navigate("Calculadora", {id: evento.idOrganizador});
+
+                } else {
+
+                    Alerta("Ops! Algo deu errado", resposta.msg);
+
+                }
+
+
             }} />
         </ScrollView>
 
     )
 }
 
-export default TelaCalculadora
+export default Evento;
