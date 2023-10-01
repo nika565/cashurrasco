@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Button, StyleSheet, TextInput } from "react-native"
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView} from "react-native"
 import Login from "../../services/api/usuarios/login";
 import Alerta from "../../components/alerta";
 
@@ -14,31 +14,37 @@ function TelaLogin({ navigation }) {
     };
 
     return (
-        <View style={styles.container}>
+        <ScrollView style={estilos.tela}>
 
-            {/* <Button title="alternativo" onPress={() => navigation.navigate("Calculadora")}></Button> */}
+            {/* <TouchableOpacity title="alternativo" onPress={() => navigation.navigate("Calculadora")}><Text>Atalho</Text></TouchableOpacity> */}
 
-            <View>
-                <Text style={styles.label}>Email:</Text>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={(text) => setEmail(text)}
-                    value={email}
-                    placeholder="Digite seu email"
-                    keyboardType="email-address"
-                />
+            <Text style={estilos.tituloLogin}>Login</Text>
 
+            <View style={estilos.login}>
+                <View>
+                    {/* <Text style={estilos.label}>Email:</Text> */}
+                    <TextInput
+                        style={estilos.input}
+                        onChangeText={(text) => setEmail(text)}
+                        value={email}
+                        placeholder="E-mail"
+                        keyboardType="email-address"
+                    />
+                </View>
 
-                <Text style={styles.label}>Senha:</Text>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={(text) => setSenha(text)}
-                    value={senha}
-                    placeholder="Digite sua senha"
-                    secureTextEntry={true}
-                />
+                <View>
 
-                <Button title="Entrar" onPress={async () => {
+                </View>
+                    {/* <Text style={estilos.label}>Senha:</Text> */}
+                    <TextInput
+                        style={estilos.input}
+                        onChangeText={(text) => setSenha(text)}
+                        value={senha}
+                        placeholder="Senha"
+                        secureTextEntry={true}
+                    />
+
+                <TouchableOpacity style={estilos.entrar} onPress={async () => {
                     const resposta = await Login(usuario)
 
                     if (resposta.status == 'success') {
@@ -54,32 +60,85 @@ function TelaLogin({ navigation }) {
                         Alerta('Algo deu errado:', resposta.msg)
                     }
 
-                }} />
+                }}><Text style={estilos.txtEntrar}>Entrar</Text></TouchableOpacity>
 
+                <Text style={estilos.txtCadastrar}>
+                    Ainda não é cadastrado? 
+                    <Text style={estilos.linkCadastrar} onPress={() => navigation.navigate("Cadastro")}> Cadastre-se</Text>
+                </Text>
             </View>
 
-            <Button title="Cadastre-se" onPress={() => navigation.navigate("Cadastro")} />
-        </View>
+        </ScrollView>
     )
 }
 
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      padding: 16,
-    },
-    label: {
-      fontSize: 18,
-      marginBottom: 8,
-    },
-    input: {
-      fontSize: 16,
-      borderWidth: 1,
-      borderColor: '#ccc',
-      padding: 8,
-      marginBottom: 16,
-    },
+const estilos = StyleSheet.create({
+    tela: {
+        width: "100%",
+        // height: "100%",
+      },
+  
+      login: {
+          alignSelf: "center",
+          width: "75%",
+          height: "40%",
+  
+          display: "flex",
+      },
+  
+      tituloLogin:{
+          fontSize: 20,
+          fontWeight: "bold",
+  
+          textTransform: "uppercase",
+          textAlign: "center",
+          
+          color: "#BF0404",
+
+          marginTop: 60,
+          marginBottom: 50,
+      },
+  
+      input: {
+          width: "100%",
+          height: 50,
+
+          paddingLeft: 10,
+  
+          borderRadius: 5,
+          borderWidth: 2,
+          borderColor: "#BF0404",
+        
+          fontSize: 20,
+          marginBottom: 30,
+      },
+
+      entrar:{
+          height: 50,
+
+          justifyContent: "center",
+          alignItems: "center",
+
+          backgroundColor: "#BF0404",
+
+          borderRadius: 5,
+
+          marginTop: 20,
+      },
+
+      txtEntrar:{
+        fontSize: 20,
+      },
+
+      txtCadastrar:{
+        marginTop: 50,
+        fontSize: 14,
+      },
+
+      linkCadastrar:{
+        fontSize: 15,
+        color: "#BF0404"
+      }
   });
 
 export default TelaLogin;

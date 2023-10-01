@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Button, ScrollView, TextInput } from "react-native"
+import { View, Text, Button, ScrollView, TextInput, StyleSheet } from "react-native"
 import { CheckBox } from "react-native-elements";
 import criarEvento from "../../services/api/eventos/criarEvento";
 import Alerta from "../../components/alerta";
+
+import estilos from "./estilos";
 
 function TelaCalculadora({ route, navigation }) {
 
     // VARIÁVEIS PARA CONTROLAR TODOS OS DADOS DO EVENTO
 
-    console.log(route.params.idOrganizador);
+    // LEMBRETE -> fAZER O useEffect
 
     // INFORMAÇÕES DO ORGANIZADOR DO EVENTO
-    const idOrganizador = route.params.id;
+    const idOrganizador = route.params.id || route.params.idOrganizador;
     const [nomeEvento, setNomeEvento] = useState('');
     const [qtdHomens, setQtdHomens] = useState('');
     const [qtdMulheres, setQtdMulheres] = useState('');
@@ -98,7 +100,7 @@ function TelaCalculadora({ route, navigation }) {
                 },
 
                 fileSuino: {
-                    selecionado: fileSuino
+                    selcionado: fileSuino
                 },
 
                 lombo: {
@@ -220,13 +222,54 @@ function TelaCalculadora({ route, navigation }) {
     }
 
     return (
-        <ScrollView>
+        <ScrollView style={estilos.tela}>
             <Text>Calculadora de churras</Text>
             {/* Estes 3 botões abaixo vão ficar no offcanvas */}
             <Button title="Receitas" onPress={() => navigation.navigate("ListaReceitas")} />
             <Button title="Histórico" onPress={() => navigation.navigate("Historico", route.params)} />
             <Button title="Perfil" onPress={() => navigation.navigate("Perfil", route.params)} />
             <Button title="Sair" onPress={() => navigation.navigate("Login")} />
+
+            <Text>Quantas pessoas vão ao churrasco?</Text>
+
+            <View style={estilos.containerQtdPessoa}>
+                <View style={estilos.fieldset}>
+                    <Text style={estilos.fieldsetLabel}>Homens</Text>
+                    <TextInput
+                        style={estilos.fieldsetInput}
+                        value={qtdHomens}
+                        onChangeText={(texto) => setQtdHomens(texto)}
+                        placeholder=""
+                        keyboardType="numeric"
+                    />
+                </View>
+
+                <View style={estilos.fieldset}>
+                    <Text style={estilos.fieldsetLabel}>Mulheres</Text>
+                    <TextInput
+                        style={estilos.fieldsetInput}
+                        value={qtdMulheres}
+                        onChangeText={(texto) => setQtdMulheres(texto)}
+                        placeholder=""
+                        keyboardType="numeric"
+                    />
+                </View>
+
+                <View style={estilos.fieldset}>
+                    <Text style={estilos.fieldsetLabel}>Crianças</Text>
+                    <TextInput
+                        style={estilos.fieldsetInput}
+                        value={qtdCriancas}
+                        onChangeText={(texto) => setQtdCriancas(texto)}
+                        placeholder=""
+                        keyboardType="numeric"
+                    />
+                </View>
+            </View>
+
+            <View style={estilos.linhaMarrom}></View>
+
+            <Text>Carnes</Text>
 
             {/* CARNE BOVINA */}
             <Text>Carne bovina</Text>
@@ -512,29 +555,6 @@ function TelaCalculadora({ route, navigation }) {
                 placeholder="Digite o nome do evento"
             />
 
-            <Text>Quantidade de Homens</Text>
-            <TextInput
-                value={qtdHomens}
-                onChangeText={(texto) => setQtdHomens(texto)}
-                placeholder="Digite a quantidade de homens"
-                keyboardType="numeric"
-            />
-
-            <Text>Quantidade de Mulheres</Text>
-            <TextInput
-                value={qtdMulheres}
-                onChangeText={(texto) => setQtdMulheres(texto)}
-                placeholder="Digite a quantidade de mulheres"
-                keyboardType="numeric"
-            />
-
-            <Text>Quantidade de Crianças</Text>
-            <TextInput
-                value={qtdCriancas}
-                onChangeText={(texto) => setQtdCriancas(texto)}
-                placeholder="Digite a quantidade de crianças"
-                keyboardType="numeric"
-            />
 
             <Text>Enderço do evento</Text>
             <TextInput
@@ -574,11 +594,8 @@ function TelaCalculadora({ route, navigation }) {
                     Alerta("Ops! Algo deu errado", resposta.msg);
 
                 }
-
-                
             }} />
         </ScrollView>
-
     )
 }
 

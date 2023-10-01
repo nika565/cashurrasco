@@ -17,7 +17,12 @@ const Stack = createNativeStackNavigator();
 function Navigation(){
     return(
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="Login">
+            <Stack.Navigator initialRouteName="Login" screenOptions={{ 
+                title: "",
+                headerStyle:{
+                    backgroundColor: "#260101"
+                }
+            }}>
                 <Stack.Screen name="Login" component={TelaLogin}/>
                 <Stack.Screen name="Cadastro" component={TelaCadastro}/>
                 <Stack.Screen name="Calculadora" component={TelaCalculadora}/>
