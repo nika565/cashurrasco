@@ -107,6 +107,27 @@ const estilos = StyleSheet.create({
         borderBottomLeftRadius: 5,
         borderBottomRightRadius: 5,
         paddingLeft: 5,
+    },
+
+    btnSalvar:{
+        backgroundColor: '#F2B705',
+        width: 180,
+        height: 50,
+
+        borderRadius: 10,
+        
+        alignSelf: 'flex-start',
+        alignItems: "center",
+        justifyContent: "center",
+
+        marginBottom: 50,
+        marginTop: 20,
+    },
+
+    txtSalvar:{
+        textTransform: 'uppercase',
+        color: '#fff',
+        fontWeight: "bold",
     }
 })
 

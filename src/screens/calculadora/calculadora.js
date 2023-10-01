@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Button, ScrollView, TextInput, StyleSheet } from "react-native"
+import { View, Text, Button, ScrollView, TextInput, TouchableOpacity } from "react-native"
 import { CheckBox } from "react-native-elements";
 import criarEvento from "../../services/api/eventos/criarEvento";
 import Alerta from "../../components/alerta";
@@ -223,7 +223,6 @@ function TelaCalculadora({ route, navigation }) {
 
     return (
         <ScrollView style={estilos.tela}>
-            <Text>Calculadora de churras</Text>
             {/* Estes 3 botões abaixo vão ficar no offcanvas */}
             <Button title="Receitas" onPress={() => navigation.navigate("ListaReceitas")} />
             <Button title="Histórico" onPress={() => navigation.navigate("Historico", route.params)} />
@@ -584,33 +583,33 @@ function TelaCalculadora({ route, navigation }) {
                         />
                     </View>
 
-                    <View>
-                        <Text>Data do evento</Text>
+                    <View style={estilos.inputTotal}>
+                        <Text style={estilos.label}>Data do evento</Text>
                         <TextInput
+                            style={estilos.input}
                             value={dataEvento}
                             onChangeText={(texto) => setDataEvento(texto)}
-                            placeholder="data"
+                            placeholder="Informe a data do evento"
                             
                         />
                     </View>
+
+                    <TouchableOpacity style={estilos.btnSalvar} onPress={async () => {
+
+                        const resposta = await criarEvento(evento);
+
+                        if (resposta.status === 'success') {
+
+                            Alerta("Sucesso!", "Evento calculado e salvo com sucesso");
+                            navigation.navigate("Resultado", resposta.dados);
+
+                        } else {
+
+                            Alerta("Ops! Algo deu errado", resposta.msg);
+
+                        }
+                    }}><Text style={estilos.txtSalvar}>Calcular e salvar</Text></TouchableOpacity>
                 </View>
-
-
-                <Button title="Calcular e salvar" onPress={async () => {
-
-                    const resposta = await criarEvento(evento);
-
-                    if (resposta.status === 'success') {
-
-                        Alerta("Sucesso!", "Evento calculado e salvo com sucesso");
-                        navigation.navigate("Resultado", resposta.dados);
-
-                    } else {
-
-                        Alerta("Ops! Algo deu errado", resposta.msg);
-
-                    }
-                }} />
             </View>
         </ScrollView>
     )
