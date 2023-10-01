@@ -230,8 +230,6 @@ function TelaCalculadora({ route, navigation }) {
             <Button title="Perfil" onPress={() => navigation.navigate("Perfil", route.params)} />
             <Button title="Sair" onPress={() => navigation.navigate("Login")} />
 
-            <Text>Quantas pessoas vão ao churrasco?</Text>
-
             <View style={estilos.containerQtdPessoa}>
                 <View style={estilos.fieldset}>
                     <Text style={estilos.fieldsetLabel}>Homens</Text>
@@ -269,10 +267,10 @@ function TelaCalculadora({ route, navigation }) {
 
             <View style={estilos.linhaMarrom}></View>
 
-            <Text>Carnes</Text>
+            <Text style={estilos.tituloVermelho}>Carnes</Text>
 
             {/* CARNE BOVINA */}
-            <Text>Carne bovina</Text>
+            <Text style={estilos.subtitulo}>Carne bovina</Text>
             <CheckBox
                 title="Contra-filé"
                 checkedIcon="check"
@@ -302,7 +300,7 @@ function TelaCalculadora({ route, navigation }) {
 
 
             {/* CARNE SUINA */}
-            <Text>Carne suína</Text>
+            <Text style={estilos.subtitulo}>Carne suína</Text>
             <CheckBox
                 title="Costela"
                 checkedIcon="check"
@@ -332,8 +330,9 @@ function TelaCalculadora({ route, navigation }) {
 
 
             {/* LINGUÍÇAS */}
-            <Text>Linguícas</Text>
+            <Text style={estilos.subtitulo}>Linguícas</Text>
             <CheckBox
+                style={estilos.checkbox}
                 title="Linguíça Toscana"
                 checkedIcon="check"
                 uncheckedIcon="square-o"
@@ -361,9 +360,8 @@ function TelaCalculadora({ route, navigation }) {
             />
 
 
-
             {/* CARNE DE FRANGO */}
-            <Text>Frango</Text>
+            <Text style={estilos.subtitulo}>Frango</Text>
             <CheckBox
                 title="Sobrecoxa"
                 checkedIcon="check"
@@ -391,10 +389,10 @@ function TelaCalculadora({ route, navigation }) {
                 onPress={() => setAsa(!asa)}
             />
 
-
+            <View style={estilos.linhaMarrom}></View>
 
             {/* BEBDIDAS */}
-            <Text>Bebidas</Text>
+            <Text style={estilos.tituloVermelho}>Bebidas</Text>
             <CheckBox
                 title="Água"
                 checkedIcon="check"
@@ -431,10 +429,10 @@ function TelaCalculadora({ route, navigation }) {
                 onPress={() => setSuco(!suco)}
             />
 
-
+            <View style={estilos.linhaMarrom}></View>
 
             {/* Suprimentos */}
-            <Text>Suprimentos</Text>
+            <Text style={estilos.tituloVermelho}>Suprimentos</Text>
             <CheckBox
                 title="Copo Descartável"
                 checkedIcon="check"
@@ -489,9 +487,10 @@ function TelaCalculadora({ route, navigation }) {
                 onPress={() => setPalitos(!palitos)}
             />
 
+            <View style={estilos.linhaMarrom}></View>
 
             {/* ACOMPANHAMENTOS */}
-            <Text>Acompanhamentos</Text>
+            <Text style={estilos.tituloVermelho}>Acompanhamentos</Text>
             <CheckBox
                 title="Arroz"
                 checkedIcon="check"
@@ -548,53 +547,71 @@ function TelaCalculadora({ route, navigation }) {
 
 
             {/* INFORMAÇÕES DO EVENTO */}
-            <Text>Nome do Evento</Text>
-            <TextInput
-                value={nomeEvento}
-                onChangeText={(texto) => setNomeEvento(texto)}
-                placeholder="Digite o nome do evento"
-            />
+            <View style={estilos.footer}>
+
+                <Text style={estilos.tituloAmarelo}>Fale mais de você e do churrasco</Text>
+
+                <View style={estilos.containerEvento}>
+                    <View style={estilos.inputTotal}>
+                        <Text style={estilos.label}>Nome do Evento</Text>
+                        <TextInput
+                            style={estilos.input}
+                            value={nomeEvento}
+                            onChangeText={(texto) => setNomeEvento(texto)}
+                            placeholder="Digite o nome do evento"
+
+                        />
+                    </View>
+
+                    <View style={estilos.inputTotal}>
+                        <Text style={estilos.label}>Endereço do evento</Text>
+                        <TextInput
+                            style={estilos.input}
+                            value={endereco}
+                            onChangeText={(texto) => setEndereco(texto)}
+                            placeholder="Digite o endereço do evento"
+                        />
+                    </View>
+
+                    <View style={estilos.inputTotal}>
+                        <Text style={estilos.label}>Informe o custo da locação</Text>
+                        <TextInput
+                            style={estilos.input}
+                            value={custoLocal}
+                            onChangeText={(texto) => setCustoLocal(texto)}
+                            placeholder="Informe o custo do local do churrasco"
+                            keyboardType="numeric"
+                        />
+                    </View>
+
+                    <View>
+                        <Text>Data do evento</Text>
+                        <TextInput
+                            value={dataEvento}
+                            onChangeText={(texto) => setDataEvento(texto)}
+                            placeholder="data"
+                            
+                        />
+                    </View>
+                </View>
 
 
-            <Text>Enderço do evento</Text>
-            <TextInput
-                value={endereco}
-                onChangeText={(texto) => setEndereco(texto)}
-                placeholder="Digite o endereço do evento"
-            />
+                <Button title="Calcular e salvar" onPress={async () => {
 
-            <Text>Informe o custo da locação</Text>
-            <TextInput
-                value={custoLocal}
-                onChangeText={(texto) => setCustoLocal(texto)}
-                placeholder="Informe o custo do local do churrasco"
-                keyboardType="numeric"
-            />
+                    const resposta = await criarEvento(evento);
 
-            <Text>Data do evento</Text>
-            <TextInput
-                value={dataEvento}
-                onChangeText={(texto) => setDataEvento(texto)}
-                placeholder="Informe o custo do local do churrasco"
-                
-            />
+                    if (resposta.status === 'success') {
 
+                        Alerta("Sucesso!", "Evento calculado e salvo com sucesso");
+                        navigation.navigate("Resultado", resposta.dados);
 
-            <Button title="Calcular e salvar" onPress={async () => {
+                    } else {
 
-                const resposta = await criarEvento(evento);
+                        Alerta("Ops! Algo deu errado", resposta.msg);
 
-                if (resposta.status === 'success') {
-
-                    Alerta("Sucesso!", "Evento calculado e salvo com sucesso");
-                    navigation.navigate("Resultado", resposta.dados);
-
-                } else {
-
-                    Alerta("Ops! Algo deu errado", resposta.msg);
-
-                }
-            }} />
+                    }
+                }} />
+            </View>
         </ScrollView>
     )
 }

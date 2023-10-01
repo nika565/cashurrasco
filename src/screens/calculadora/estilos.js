@@ -48,6 +48,65 @@ const estilos = StyleSheet.create({
         alignSelf: "center",
         marginTop: 20,
         marginBottom: 20,
+    },
+
+    tituloVermelho:{
+        color: "#BF0404",
+        textTransform: "uppercase",
+        fontWeight: "bold",
+        fontSize: 15,
+        marginLeft: 15,
+    },
+
+    subtitulo:{
+        fontWeight: "bold",
+        fontSize: 15,
+        marginLeft: 15,
+        marginTop: 20,
+        textTransform: "capitalize",
+    },
+
+    checkbox:{
+        borderColor: "#FFF",
+        backgroundColor: '#FFF'
+    },
+
+    footer:{
+        backgroundColor: "#260101",
+        width: '100%',
+        alignItems: "center",
+        marginTop: 20,
+    },
+
+    tituloAmarelo:{
+        color: '#F27405',
+        textTransform: "uppercase",
+        fontWeight: "bold",
+        fontSize: 15,
+
+        margin: 30,
+    },
+
+    containerEvento:{
+        width: '90%',
+    },
+
+    inputTotal:{
+        backgroundColor: '#FFF',
+        width: '100%',
+        borderRadius: 10,
+        marginBottom: 20,
+    },
+
+    label:{
+        marginLeft: 5,
+    },
+
+    input:{
+        height: 40,
+        borderBottomLeftRadius: 5,
+        borderBottomRightRadius: 5,
+        paddingLeft: 5,
     }
 })
 
