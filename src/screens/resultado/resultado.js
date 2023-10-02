@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { Text, Button, ScrollView, TextInput } from "react-native"
+import { Text, Button, ScrollView, TextInput, View, TouchableOpacity } from "react-native"
 import { CheckBox } from "react-native-elements";
 import criarEvento from "../../services/api/eventos/criarEvento";
 import Alerta from "../../components/alerta";
+import estilos from "./estilos";
+// import { TouchableOpacity } from "react-native-gesture-handler";
 
 function TelaResultado({ route, navigation }) {
     // VARIÁVEIS PARA CONTROLAR TODOS OS DADOS DO EVENTO
@@ -178,7 +180,7 @@ function TelaResultado({ route, navigation }) {
 
     return (
         <ScrollView>
-            <Text>Calculadora de churras</Text>
+            {/* <Text>Calculadora de churras</Text> */}
             {/* Estes 3 botões abaixo vão ficar no offcanvas */}
             {/* <Button title="Receitas" onPress={() => navigation.navigate("ListaReceitas")} />
             <Button title="Histórico" onPress={() => navigation.navigate("Historico", route.params)} />
@@ -187,128 +189,265 @@ function TelaResultado({ route, navigation }) {
 
 
             {/* CARNE BOVINA */}
-            <Text>Carne bovina</Text>
+            <Text style={estilos.titulo}>Aqui está o resultado do cálculo</Text>
 
-            <Text>Contra filé: Qtd:{route.params.carnes.bovino.contraFile.qtd} Preço total:{route.params.carnes.bovino.contraFile.precoTotal}</Text>
+            <View style={estilos.cardapio}>
+                <Text style={estilos.tituloCardapio}>Carnes</Text>
+                <View style={estilos.linha}>
+                    <Text style={[estilos.nomeCarne, estilos.corCinza]}>Contra filé</Text>
+                    <Text style={[estilos.kilos, estilos.corCinza]}>{route.params.carnes.bovino.contraFile.qtd} Kg</Text>
+                    {/* <Text>R${route.params.carnes.bovino.contraFile.precoTotal}</Text> */}
+                </View>
 
-            <Text>Maminha: Qtd:{route.params.carnes.bovino.maminha.qtd} Preço total:{route.params.carnes.bovino.maminha.precoTotal}</Text>
+                <View style={estilos.linha}>
+                    <Text style={[estilos.nomeCarne, estilos.corCinza]}>Maminha</Text>
+                    <Text style={[estilos.kilos, estilos.corCinza]}>{route.params.carnes.bovino.maminha.qtd} Kg</Text>
+                    {/* <Text>R${route.params.carnes.bovino.maminha.precoTotal}</Text> */}
+                </View>
 
-            <Text>Alcatra: Qtd:{route.params.carnes.bovino.alcatra.qtd} Preço total:{route.params.carnes.bovino.alcatra.precoTotal}</Text>
-
-
-            {/* CARNE SUINA */}
-            <Text>Carne suína</Text>
-
-            <Text>Costela: Qtd:{route.params.carnes.suino.costela.qtd} Preço total:{route.params.carnes.suino.costela.precoTotal}</Text>
-        
-            <Text>Filé Suino: Qtd:{route.params.carnes.suino.fileSuino.qtd} Preço total:{route.params.carnes.suino.fileSuino.precoTotal}</Text>
-
-
-            <Text>Lombo: Qtd:{route.params.carnes.suino.lombo.qtd} Preço total:{route.params.carnes.suino.lombo.precoTotal}</Text>
+                <View style={estilos.linha}>
+                    <Text style={[estilos.nomeCarne, estilos.corCinza]}>Alcatra</Text>
+                    <Text style={[estilos.kilos, estilos.corCinza]}>{route.params.carnes.bovino.alcatra.qtd} Kg</Text>
+                    {/* <Text>R${route.params.carnes.bovino.alcatra.precoTotal}</Text> */}
+                </View>
 
 
-            {/* LINGUÍÇAS */}
-            <Text>Linguícas</Text>
+                {/* CARNE SUINA */}
+                <View style={estilos.linha}>
+                    <Text style={[estilos.nomeCarne, estilos.corCinza]}>Costela</Text>
+                    <Text style={[estilos.kilos, estilos.corCinza]}>{route.params.carnes.suino.costela.qtd} Kg</Text>
+                    {/* <Text>R${route.params.carnes.suino.costela.precoTotal}</Text> */}
+                </View>
 
-            <Text>Toscana: Qtd:{route.params.carnes.linguicas.toscana.qtd} Preço total:{route.params.carnes.linguicas.toscana.precoTotal}</Text>
+                <View style={estilos.linha}>
+                    <Text style={[estilos.nomeCarne, estilos.corCinza]}>Filé Suino</Text>
+                    <Text style={[estilos.kilos, estilos.corCinza]}>{route.params.carnes.suino.fileSuino.qtd} Kg</Text>
+                    {/* <Text>R${route.params.carnes.suino.fileSuino.precoTotal}</Text> */}
+                </View>
 
-        
-            <Text>Cuiabana: Qtd:{route.params.carnes.linguicas.cuiabana.qtd} Preço total:{route.params.carnes.linguicas.cuiabana.precoTotal}</Text>
+                <View style={estilos.linha}>
+                    <Text style={[estilos.nomeCarne, estilos.corCinza]}>Lombo</Text>
+                    <Text style={[estilos.kilos, estilos.corCinza]}>{route.params.carnes.suino.lombo.qtd} Kg</Text>
+                    {/* <Text>R${route.params.carnes.suino.lombo.precoTotal}</Text> */}
+                </View>
+
+                
+                {/* LINGUÍÇAS */}
+                <View style={estilos.linha}>
+                    <Text style={[estilos.nomeCarne, estilos.corCinza]}>Toscana</Text>
+                    <Text style={[estilos.kilos, estilos.corCinza]}>{route.params.carnes.linguicas.toscana.qtd} Kg</Text>
+                    {/* <Text>R${route.params.carnes.linguicas.toscana.precoTotal}</Text> */}
+                </View>
+
+                <View style={estilos.linha}>
+                    <Text style={[estilos.nomeCarne, estilos.corCinza]}>Cuiabana</Text>
+                    <Text style={[estilos.kilos, estilos.corCinza]}>{route.params.carnes.linguicas.cuiabana.qtd} Kg</Text>
+                    {/* <Text>R${route.params.carnes.linguicas.cuiabana.precoTotal}</Text> */}
+                </View>
+
+                <View style={estilos.linha}>
+                    <Text style={[estilos.nomeCarne, estilos.corCinza]}>Linguica de Frango</Text>
+                    <Text style={[estilos.kilos, estilos.corCinza]}>{route.params.carnes.linguicas.linguicaFrango.qtd} Kg</Text>
+                    {/* <Text>R${route.params.carnes.linguicas.linguicaFrango.precoTotal}</Text> */}
+                </View>
+
+                
+                {/* CARNE DE FRANGO */}
+                <View style={estilos.linha}>
+                    <Text style={[estilos.nomeCarne, estilos.corCinza]}>Sobrecoxa</Text>
+                    <Text style={[estilos.kilos, estilos.corCinza]}>{route.params.carnes.frango.sobrecoxa.qtd} Kg</Text>
+                    {/* <Text>R${route.params.carnes.frango.sobrecoxa.precoTotal}</Text> */}
+                </View>
+
+                <View style={estilos.linha}>
+                    <Text style={[estilos.nomeCarne, estilos.corCinza]}>Coração</Text>
+                    <Text style={[estilos.kilos, estilos.corCinza]}>{route.params.carnes.frango.coracao.qtd} Kg</Text>
+                    {/* <Text>R${route.params.carnes.frango.coracao.precoTotal}</Text> */}
+                </View>
+
+                <View style={estilos.linha}>
+                    <Text style={[estilos.nomeCarne, estilos.corCinza]}>Asa</Text>
+                    <Text style={[estilos.kilos, estilos.corCinza]}>{route.params.carnes.frango.asa.qtd} Kg</Text>
+                    {/* <Text>R${route.params.carnes.frango.asa.precoTotal}</Text> */}
+                </View>
+            </View>
+
+
+            {/* BEBIDAS */}
+            <View style={estilos.cardapio}>
+                <Text style={estilos.tituloCardapio}>Bebidas</Text>
+                
+                <View style={estilos.linha}>
+                    <Text style={[estilos.nomeCarne, estilos.corCinza]}>Água</Text>
+                    <Text style={[estilos.kilos, estilos.corCinza]}>{route.params.bebidas.agua.qtd} L</Text>
+                    {/* <Text>R${route.params.bebidas.agua.precoTotal}</Text> */}
+                </View>
+
+                <View style={estilos.linha}>
+                    <Text style={[estilos.nomeCarne, estilos.corCinza]}>Refrigerante</Text>
+                    <Text style={[estilos.kilos, estilos.corCinza]}>{route.params.bebidas.refri.qtd} L</Text>
+                    {/* <Text>R${route.params.bebidas.refri.precoTotal}</Text> */}
+                </View>
+
+                <View style={estilos.linha}>
+                    <Text style={[estilos.nomeCarne, estilos.corCinza]}>Cerveja</Text>
+                    <Text style={[estilos.kilos, estilos.corCinza]}>{route.params.bebidas.cerveja.qtd} L</Text>
+                    {/* <Text>R${route.params.bebidas.cerveja.precoTotal}</Text> */}
+                </View>
+
+                <View style={estilos.linha}>
+                    <Text style={[estilos.nomeCarne, estilos.corCinza]}>Suco</Text>
+                    <Text style={[estilos.kilos, estilos.corCinza]}>{route.params.bebidas.suco.qtd} L</Text>
+                    {/* <Text>R${route.params.bebidas.suco.precoTotal}</Text> */}
+                </View>
+            </View>
 
             
-            <Text>Linguica de Frango: Qtd:{route.params.carnes.linguicas.linguicaFrango.qtd} Preço total:{route.params.carnes.linguicas.linguicaFrango.precoTotal}</Text>
-
-
-
-            {/* CARNE DE FRANGO */}
-            <Text>Frango</Text>
-
-            <Text>Sobrecoxa: Qtd:{route.params.carnes.frango.sobrecoxa.qtd} Preço total:{route.params.carnes.frango.sobrecoxa.precoTotal}</Text>
-
-            <Text>Coração: Qtd:{route.params.carnes.frango.coracao.qtd} Preço total:{route.params.carnes.frango.coracao.precoTotal}</Text>
-
-            <Text>Asa: Qtd:{route.params.carnes.frango.asa.qtd} Preço total:{route.params.carnes.frango.asa.precoTotal}</Text>
-
-
-            {/* BEBDIDAS */}
-            <Text>Bebidas</Text>
-            
-            <Text>Água: Qtd:{route.params.bebidas.agua.qtd} Preço total:{route.params.bebidas.agua.precoTotal}</Text>
-
-
-            <Text>Refrigerante: Qtd:{route.params.bebidas.refri.qtd} Preço total:{route.params.bebidas.refri.precoTotal}</Text>
-
-            
-            <Text>Cerveja: Qtd:{route.params.bebidas.cerveja.qtd} Preço total:{route.params.bebidas.cerveja.precoTotal}</Text>
-
-            <Text>Suco: Qtd:{route.params.bebidas.suco.qtd} Preço total:{route.params.bebidas.suco.precoTotal}</Text>
-
-
             {/* Suprimentos */}
-            <Text>Suprimentos</Text>
-            
-            <Text>Copo Descartável: Qtd:{route.params.suprimentos.copoDesc.qtd} Preço total:{route.params.suprimentos.copoDesc.precoTotal}</Text>
+            <View style={estilos.cardapio}>
+                <Text style={estilos.tituloCardapio}>Suprimentos</Text>
+                
+                <View style={estilos.linha}>
+                    <Text style={[estilos.nomeCarne, estilos.corCinza]}>Copos Descartáveis</Text>
+                    <Text style={[estilos.kilos, estilos.corCinza]}>{route.params.suprimentos.copoDesc.qtd.toFixed("0")} UN</Text>
+                    {/* <Text>R${route.params.suprimentos.copoDesc.precoTotal}</Text> */}
+                </View>
 
-            <Text>Talheres Descartáveis: Qtd:{route.params.suprimentos.talheres.qtd} Preço total:{route.params.suprimentos.talheres.precoTotal}</Text>
+                <View style={estilos.linha}>
+                    <Text style={[estilos.nomeCarne, estilos.corCinza]}>Talheres Descartáveis</Text>
+                    <Text style={[estilos.kilos, estilos.corCinza]}>{route.params.suprimentos.talheres.qtd} UN</Text>
+                    {/* <Text>R${route.params.suprimentos.talheres.precoTotal}</Text> */}
+                </View>
 
-            <Text>Prato Descartável: Qtd:{route.params.suprimentos.prato.qtd} Preço total:{route.params.suprimentos.prato.precoTotal}</Text>
+                <View style={estilos.linha}>
+                    <Text style={[estilos.nomeCarne, estilos.corCinza]}>Pratos Descartáveis</Text>
+                    <Text style={[estilos.kilos, estilos.corCinza]}>{route.params.suprimentos.prato.qtd} UN</Text>
+                    {/* <Text>R${route.params.suprimentos.prato.precoTotal}</Text> */}
+                </View>
 
-            <Text>Carvão: Qtd:{route.params.suprimentos.carvao.qtd} Preço total:{route.params.suprimentos.carvao.precoTotal}</Text>
+                <View style={estilos.linha}>
+                    <Text style={[estilos.nomeCarne, estilos.corCinza]}>Carvão</Text>
+                    <Text style={[estilos.kilos, estilos.corCinza]}>{route.params.suprimentos.carvao.qtd} Kg</Text>
+                    {/* <Text>R${route.params.suprimentos.carvao.precoTotal}</Text> */}
+                </View>
 
-            <Text>Guardanapos: Qtd:{route.params.suprimentos.guardanapos.qtd} Preço total:{route.params.suprimentos.guardanapos.precoTotal}</Text>
+                <View style={estilos.linha}>
+                    <Text style={[estilos.nomeCarne, estilos.corCinza]}>Guardanapos</Text>
+                    <Text style={[estilos.kilos, estilos.corCinza]}>{route.params.suprimentos.guardanapos.qtd} UN</Text>
+                    {/* <Text>R${route.params.suprimentos.guardanapos.precoTotal}</Text> */}
+                </View>
 
-            <Text>Palitos de Dente: Qtd:{route.params.suprimentos.palitos.qtd} Preço total:{route.params.suprimentos.palitos.precoTotal}</Text>
+                <View style={estilos.linha}>
+                    <Text style={[estilos.nomeCarne, estilos.corCinza]}>Palitos de Dente</Text>
+                    <Text style={[estilos.kilos, estilos.corCinza]}>{route.params.suprimentos.palitos.qtd} UN</Text>
+                    {/* <Text>R${route.params.suprimentos.palitos.precoTotal}</Text> */}
+                </View>
+            </View>
 
 
             {/* ACOMPANHAMENTOS */}
-            <Text>Acompanhamentos</Text>
+            <View style={estilos.cardapio}>
+                <Text style={estilos.tituloCardapio}>Acompanhamentos</Text>
+                
+                <View style={estilos.linha}>
+                    <Text style={[estilos.nomeCarne, estilos.corCinza]}>Arroz</Text>
+                    <Text style={[estilos.kilos, estilos.corCinza]}>{route.params.acompanhamentos.arroz.qtd.toFixed("2")} Kg</Text>
+                    {/* <Text>R${route.params.acompanhamentos.arroz.precoTotal}</Text> */}
+                </View>
 
-            <Text>Arroz: Qtd:{route.params.acompanhamentos.arroz.qtd} Preço total:{route.params.acompanhamentos.arroz.precoTotal}</Text>
+                <View style={estilos.linha}>
+                    <Text style={[estilos.nomeCarne, estilos.corCinza]}>Farofa</Text>
+                    <Text style={[estilos.kilos, estilos.corCinza]}>{route.params.acompanhamentos.farofa.qtd} Kg</Text>
+                    {/* <Text>R${route.params.acompanhamentos.farofa.precoTotal}</Text> */}
+                </View>
 
-            <Text>Farofa: Qtd:{route.params.acompanhamentos.farofa.qtd} Preço total:{route.params.acompanhamentos.farofa.precoTotal}</Text>
+                <View style={estilos.linha}>
+                    <Text style={[estilos.nomeCarne, estilos.corCinza]}>Pão</Text>
+                    <Text style={[estilos.kilos, estilos.corCinza]}>{route.params.acompanhamentos.pao.qtd} UN</Text>
+                    {/* <Text>R${route.params.acompanhamentos.pao.precoTotal}</Text> */}
+                </View>
 
-            <Text>Pão: Qtd:{route.params.acompanhamentos.pao.qtd} Preço total:{route.params.acompanhamentos.pao.precoTotal}</Text>
+                <View style={estilos.linha}>
+                    <Text style={[estilos.nomeCarne, estilos.corCinza]}>Pão de Alho</Text>
+                    <Text style={[estilos.kilos, estilos.corCinza]}>{route.params.acompanhamentos.paoAlho.qtd} UN</Text>
+                    {/* <Text>R${route.params.acompanhamentos.paoAlho.precoTotal}</Text> */}
+                </View>
 
-            <Text>Pão de Alho: Qtd:{route.params.acompanhamentos.paoAlho.qtd} Preço total:{route.params.acompanhamentos.paoAlho.precoTotal}</Text>
+                <View style={estilos.linha}>
+                    <Text style={[estilos.nomeCarne, estilos.corCinza]}>Vinagrete</Text>
+                    <Text style={[estilos.kilos, estilos.corCinza]}>{route.params.acompanhamentos.vinagrete.qtd} Kg</Text>
+                    {/* <Text>R${route.params.acompanhamentos.vinagrete.precoTotal}</Text> */}
+                </View>
 
-            <Text>Vinagrete: Qtd:{route.params.acompanhamentos.vinagrete.qtd} Preço total:{route.params.acompanhamentos.vinagrete.precoTotal}</Text>
-
-            <Text>Queijo Coalho: Qtd:{route.params.acompanhamentos.queijoCoalho.qtd} Preço total:{route.params.acompanhamentos.queijoCoalho.precoTotal}</Text>
-
+                <View style={estilos.linha}>
+                    <Text style={[estilos.nomeCarne, estilos.corCinza]}>Queijo Coalho</Text>
+                    <Text style={[estilos.kilos, estilos.corCinza]}>{route.params.acompanhamentos.queijoCoalho.qtd} UN</Text>
+                    {/* <Text>R${route.params.acompanhamentos.queijoCoalho.precoTotal}</Text> */}
+                </View>
+            </View>
 
             {/* INFORMAÇÕES DO EVENTO */}
-            <Text>Nome do Evento</Text>
-            <Text>{route.params.nomeEvento}</Text>
+            <View style={estilos.containerInfoEvento}>
+                <View>
+                    <Text style={[estilos.txt, estilos.corBranca]}>Nome do Evento</Text>
+                    <Text style={estilos.resultado}>{route.params.nomeEvento}</Text>
+                </View>
 
-            <Text>Quantidade de Homens</Text>
-            <Text>{route.params.qtdHomens}</Text>
+                <View style={estilos.linhaAmarela}></View>
 
-            <Text>Quantidade de Mulheres</Text>
-            <Text>{route.params.qtdMulheres}</Text>
+                <View style={estilos.containerPessoa}>
+                    <Text style={estilos.resultado}>{route.params.qtdHomens}</Text>
+                    <Text style={[estilos.txt, estilos.corBranca]}>Homens</Text>
+                </View>
 
-            <Text>Quantidade de Crianças</Text>
-            <Text>{route.params.qtdCriancas}</Text>
+                <View style={estilos.containerPessoa}>
+                    <Text style={estilos.resultado}>{route.params.qtdMulheres}</Text>
+                    <Text style={[estilos.txt, estilos.corBranca]}>Mulheres</Text>
+                </View>
 
-            <Text>Enderço do evento</Text>
-            <Text>{route.params.endereco}</Text>
+                <View style={estilos.containerPessoa}>
+                    <Text style={estilos.resultado}>{route.params.qtdCriancas}</Text>
+                    <Text style={[estilos.txt, estilos.corBranca]}>Crianças</Text>
+                </View>
 
-            <Text>Informe o custo da locação</Text>
-            <Text>{route.params.custoLocal}</Text>
+                <View style={estilos.linhaAmarela}></View>
 
-            <Text>Data do evento</Text>
-            <Text>{route.params.dataEvento}</Text>
+                    <View style={estilos.input}>
+                        <Text style={estilos.label}>Endereço do evento</Text>
+                        <Text>{route.params.endereco}</Text>
+                    </View>
 
-            <Text>Custo individual</Text>
-            <Text>{route.params.custoPessoa}</Text>
+                    <View style={estilos.input}>
+                        <Text style={estilos.label}>Data do evento</Text>
+                        <Text>{route.params.dataEvento}</Text>
+                    </View>
 
-            <Text>Custo individual</Text>
-            <Text>{route.params.custoTotal}</Text>
+                <View style={estilos.linhaAmarela}></View>
 
-            <Button title="Voltar" onPress={() => {
+                <Text style={estilos.tituloCusto}>Custo</Text>
+                <View style={estilos.partePrecos}>
+                    <View style={[estilos.caixaPreco, estilos.caixaUm]}>
+                        <Text style={estilos.txtPreco}>locação</Text>
+                        <Text style={estilos.preco}>R${route.params.custoLocal.toFixed("2")}</Text>
+                    </View>
 
-                navigation.navigate('Calculadora', { id: route.params.idOrganizador });
+                    <View style={estilos.caixaPreco}>
+                        <Text style={estilos.txtPreco}>individual</Text>
+                        <Text style={estilos.preco}>R${route.params.custoPessoa.toFixed("2")}</Text>
+                    </View>
 
-            }} />
+                    <View style={estilos.caixaPreco}>
+                        <Text style={estilos.txtPreco}>total</Text>
+                        <Text style={estilos.preco}>R${route.params.custoTotal.toFixed("2")}</Text>
+                    </View>
+                </View>
+
+                <TouchableOpacity style={estilos.btn} onPress={() => {
+
+                    navigation.navigate('Calculadora', { id: route.params.idOrganizador });
+
+                }}><Text>Voltar</Text></TouchableOpacity>
+            </View>
         </ScrollView>
 
     )

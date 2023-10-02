@@ -65,9 +65,9 @@ function TelaCalculadora({ route, navigation }) {
     const [queijoCoalho, setQueijoCoalho] = useState(false);
 
     // Função para recarregar a tela
-    recarregarTela = () => {
-        this.forceUpdate();
-    }
+    // recarregarTela = () => {
+    //     this.forceUpdate();
+    // }
 
     // Objeto que vai para op back-end salvar o evento
     const evento = {
@@ -229,8 +229,11 @@ function TelaCalculadora({ route, navigation }) {
     return (
         <ScrollView style={estilos.tela}>
             {/* Estes 3 botões abaixo vão ficar no offcanvas */}
-            <Button title="Histórico" onPress={() => navigation.navigate("Historico", route.params)} />
-            <Button title="Perfil" onPress={() => navigation.navigate("Perfil", route.params)} />
+
+            <View style={estilos.areaBotao}>
+                <TouchableOpacity style={estilos.btnNav} onPress={() => navigation.navigate("Historico", route.params)}><Text style={estilos.btnNavTxt}>Histórico</Text></TouchableOpacity>
+                <TouchableOpacity style={estilos.btnNav} onPress={() => navigation.navigate("Perfil", route.params)}><Text style={estilos.btnNavTxt}>Perfil</Text></TouchableOpacity>
+            </View>
 
             <Text style={estilos.tituloVermelho}>Quantas pessoas vão ao churrasco?</Text>
 
@@ -331,7 +334,6 @@ function TelaCalculadora({ route, navigation }) {
                 checked={lombo}
                 onPress={() => setLombo(!lombo)}
             />
-
 
             {/* LINGUÍÇAS */}
             <Text style={estilos.subtitulo}>Linguícas</Text>
@@ -607,7 +609,7 @@ function TelaCalculadora({ route, navigation }) {
 
                             Alerta("Sucesso!", "Evento calculado e salvo com sucesso");
 
-                            this.recarregarTela();
+                            // this.recarregarTela();
 
                             navigation.navigate("Resultado", resposta.dados);
 

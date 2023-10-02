@@ -229,9 +229,11 @@ function Evento({ route, navigation }) {
 
         <ScrollView style={estilos.tela}>
             {/* Estes 3 botões abaixo vão ficar no offcanvas */}
-            <Button title="Histórico" onPress={() => navigation.navigate("Historico", route.params)} />
-            <Button title="Perfil" onPress={() => navigation.navigate("Perfil", route.params)} />
-
+            <View style={estilos.areaBotao}>
+                <TouchableOpacity style={estilos.btnNav} onPress={() => navigation.navigate("Historico", route.params)}><Text style={estilos.btnNavTxt}>Histórico</Text></TouchableOpacity>
+                <TouchableOpacity style={estilos.btnNav} onPress={() => navigation.navigate("Perfil", route.params)}><Text style={estilos.btnNavTxt}>Perfil</Text></TouchableOpacity>
+            </View>
+            
             <Text style={estilos.tituloVermelho}>Opções selecionadas do seu evento</Text>
 
             <View style={estilos.containerQtdPessoa}>

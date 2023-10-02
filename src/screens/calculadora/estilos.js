@@ -128,6 +128,26 @@ const estilos = StyleSheet.create({
         textTransform: 'uppercase',
         color: '#fff',
         fontWeight: "bold",
+    },
+
+    areaBotao:{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-around",
+    },
+
+    btnNav:{
+        backgroundColor: "#F2B705",
+        width: '40%',
+        height: 50,
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: 5,
+        margin: 20,
+    },
+
+    btnNavTxt:{
+        fontSize: 16,
     }
 })
 
