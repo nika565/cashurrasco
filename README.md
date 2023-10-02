@@ -22,6 +22,22 @@ Desenvolver um aplicativo móvel abrangente, conhecido como 'Calculadora de Chur
 - Editar evento
 - Excluir evento
 
+## Pré-requisitos:
+Para rodar este projeto localmente em sua máquina, você precisa ter as seguintes ferramentas instaladas:
+
+- Node.js - Ambiente de execução JavaScript.
+- npm ou Yarn - Gerenciador de pacotes.
+- React Native CLI - Configurado de acordo com seu sistema operacional e plataforma de destino (Android ou iOS).
+
+## Instalação
+Siga estas etapas para configurar o projeto DiviDino em sua máquina:
+
+Clone este repositório: git clone https://github.com/nika565/cashurrasco.git
+
+Instale as dependências do projeto:
+> npm install / yarn install
+> npx react-native run-android
+
 ## Link do figma:
 
 https://www.figma.com/file/BAxZsUE7zuIKlu7d82uz2m/Cashurrasco?type=design&node-id=0-1&mode=design
