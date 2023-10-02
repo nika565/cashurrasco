@@ -100,7 +100,7 @@ function TelaCalculadora({ route, navigation }) {
                 },
 
                 fileSuino: {
-                    selcionado: fileSuino
+                    selecionado: fileSuino
                 },
 
                 lombo: {

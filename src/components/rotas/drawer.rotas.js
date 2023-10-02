@@ -32,13 +32,13 @@ function DrawerNavigation(){
         <Drawer.Navigator initialRouteName="Login" screenOptions={{
             title: '',
             headerStyle:{
-                backgroundColor: '#250101'
+                backgroundColor: '#F27405'
             },
             drawerInactiveTintColor: '#BF0404',
             drawerActiveTintColor: '#F27405',
         }}>
             <Drawer.Screen name="Receita" component={TelaReceita} options={{drawerItemStyle: { display: 'none' }}}/>
-            <Drawer.Screen name="Cadastro" component={TelaCadastro} options={{drawerItemStyle: { display: 'none' }}}/>
+            <Drawer.Screen name="Cadastro" component={TelaCadastro} options={{drawerItemStyle: { display: 'none' }, drawerLockMode: 'locked-closed'}}/>
             <Drawer.Screen name="Resultado" component={TelaResultado} options={{drawerItemStyle: { display: 'none' }}}/>
             <Drawer.Screen name="Evento" component={Evento} options={{drawerItemStyle: { display: 'none' }}}/>
 
@@ -51,6 +51,7 @@ function DrawerNavigation(){
             <Drawer.Screen name="Historico" component={TelaHistorico} options={{drawerItemStyle: { display: 'none' }}}/>
             <Drawer.Screen name="Perfil" component={Perfil} options={{drawerItemStyle: { display: 'none' }}}/>
             <Drawer.Screen name="Login" component={TelaLogin} options={{
+                 drawerLockMode: 'locked-closed',
                 headerShown: false,
                 drawerLabel: 'Sair',
             }}/>

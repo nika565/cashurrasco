@@ -36,14 +36,14 @@ const TelaHistorico = ({route, navigation}) => {
     const renderItem = ({ item }) => {
         return (
             <View>
+                {console.log(item._id)}
                 <Text>Nome do Evento: {item.nomeEvento}</Text>
                 <Text>ID do Organizador: {item.idOrganizador}</Text>
                 <Text>Custo Total: {item.custoTotal}</Text>
                 <Button title='Ver mais' onPress={async () => {
 
-                    const evento = await buscarEvento(item._id)
 
-                    
+                    const evento = await buscarEvento(item._id)
 
                     navigation.navigate('Evento', evento.evento)
                 }} />
