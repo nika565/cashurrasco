@@ -5,6 +5,7 @@ import editarEvento from "../../services/api/eventos/editarEvento";
 import apagarEvento from "../../services/api/eventos/apagarEvento";
 import Alerta from "../../components/alerta";
 import estilos from "./estilos";
+import buscarEvento from "../../services/api/eventos/buscarEvento";
 
 function Evento({ route, navigation }) {
 
@@ -598,6 +599,25 @@ function Evento({ route, navigation }) {
                         />
                     </View>
 
+                    <TouchableOpacity style={estilos.btnVer} onPress={async () => {
+
+
+
+                        const resposta = await buscarEvento(route.params._id);
+
+                        if (resposta.status === 'success') {
+
+                            navigation.navigate("Resultado", resposta.evento);
+
+                        } else {
+
+                            Alerta("Ops! Algo deu errado", resposta.msg);
+
+                        }
+
+
+                    }} ><Text style={estilos.txtSalvar}>Ver resultados</Text></TouchableOpacity>
+
                     <TouchableOpacity style={estilos.btnEditar} onPress={async () => {
 
 
@@ -636,7 +656,7 @@ function Evento({ route, navigation }) {
 
                     }} ><Text style={estilos.txtSalvar}>Apagar evento</Text></TouchableOpacity>
 
-                    
+
                 </View>
             </View>
         </ScrollView>

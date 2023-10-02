@@ -109,7 +109,7 @@ const estilos = StyleSheet.create({
         paddingLeft: 5,
     },
 
-    btnEditar:{
+    btnVer:{
         backgroundColor: '#F2B705',
         width: '100%',
         height: 50,
@@ -122,6 +122,21 @@ const estilos = StyleSheet.create({
 
         marginBottom: 10,
         marginTop: 20,
+    },
+
+    btnEditar:{
+        backgroundColor: '#F2B705',
+        width: '100%',
+        height: 50,
+
+        borderRadius: 10,
+        
+        alignSelf: 'center',
+        alignItems: "center",
+        justifyContent: "center",
+
+        marginBottom: 10,
+        marginTop: 5,
     },
 
     btnApagar:{
