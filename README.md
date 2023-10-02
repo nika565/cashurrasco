@@ -6,10 +6,10 @@ Desenvolver um aplicativo móvel abrangente, conhecido como 'Calculadora de Chur
 
 ## Integrantes do grupo:
 
-- Nathan Barros
-- Nalanda Ventura
-- Noemi Azocar
-- Renato Viturino
+- Nathan Barros (Tech-Lead, Back-End)
+- Nalanda Ventura (Documentação)
+- Noemi Azocar (Documentação e prototipação)
+- Renato Viturino (Front-End)
 
 ## Funcionalidades Principais
 
