@@ -7,8 +7,8 @@ import DrawerNavigation from "./drawer.rotas";
 function Navigation(){
     return(
         <NavigationContainer>
-            <StackNavigation/>
-            {/* <DrawerNavigation/> */}
+            {/* <StackNavigation/> */}
+            <DrawerNavigation/>
         </NavigationContainer>
     )
 }

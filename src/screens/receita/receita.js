@@ -30,7 +30,7 @@ function TelaReceita({ route, navigation }){
                 }
             </View>
 
-            <TouchableOpacity style={estilos.btn} onPress={() => navigation.goBack()}><Text style={estilos.txtBtn}>Voltar</Text></TouchableOpacity>
+            <TouchableOpacity style={estilos.btn} onPress={() => navigation.navigate("ListaReceitas")}><Text style={estilos.txtBtn}>Voltar</Text></TouchableOpacity>
         </ScrollView>
     )
 }

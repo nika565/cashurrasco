@@ -224,10 +224,8 @@ function TelaCalculadora({ route, navigation }) {
     return (
         <ScrollView style={estilos.tela}>
             {/* Estes 3 botões abaixo vão ficar no offcanvas */}
-            <Button title="Receitas" onPress={() => navigation.navigate("ListaReceitas")} />
             <Button title="Histórico" onPress={() => navigation.navigate("Historico", route.params)} />
             <Button title="Perfil" onPress={() => navigation.navigate("Perfil", route.params)} />
-            <Button title="Sair" onPress={() => navigation.navigate("Login")} />
 
             <Text style={estilos.tituloVermelho}>Quantas pessoas vão ao churrasco?</Text>
 

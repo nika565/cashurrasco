@@ -15,32 +15,47 @@ import Evento from "../../screens/evento/evento";
 
 const Drawer = createDrawerNavigator();
 
-// function DrawerNavigation(){
-//     return(
-//         <Drawer.Navigator initialRouteName="Login">
-//             <Drawer.Screen name="Login" component={StackNavigation}/>
-//             <Drawer.Screen name="Cadastro" component={StackNavigation}/>
-//             <Drawer.Screen name="Calculadora" component={StackNavigation}/>
-//             <Drawer.Screen name="Resultado" component={StackNavigation}/>
-//             <Drawer.Screen name="ListaReceitas" component={StackNavigation}/>
-//             <Drawer.Screen name="Receita" component={StackNavigation}/>
-//             <Drawer.Screen name="Historico" component={StackNavigation}/>
-//             <Drawer.Screen name="Evento" component={StackNavigation}/>
-//             <Drawer.Screen name="Perfil" component={StackNavigation}/>
-//         </Drawer.Navigator>
+function DrawerNavigation(){
+    return(
+        // <Drawer.Navigator initialRouteName="Login">
+        //     <Drawer.Screen name="Login" component={StackNavigation}/>
+        //     <Drawer.Screen name="Cadastro" component={StackNavigation}/>
+        //     <Drawer.Screen name="Calculadora" component={StackNavigation}/>
+        //     <Drawer.Screen name="Resultado" component={StackNavigation}/>
+        //     <Drawer.Screen name="ListaReceitas" component={StackNavigation}/>
+        //     <Drawer.Screen name="Receita" component={StackNavigation}/>
+        //     <Drawer.Screen name="Historico" component={StackNavigation}/>
+        //     <Drawer.Screen name="Evento" component={StackNavigation}/>
+        //     <Drawer.Screen name="Perfil" component={StackNavigation}/>
+        // </Drawer.Navigator>
         
-//         // <Drawer.Navigator initialRouteName="Login">
-//         //     <Drawer.Screen name="Receita" component={TelaReceita}/>
-//         //     <Drawer.Screen name="Cadastro" component={TelaCadastro}/>
-//         //     <Drawer.Screen name="Resultado" component={TelaResultado}/>
-//         //     <Drawer.Screen name="Evento" component={Evento}/>
-//         //     <Drawer.Screen name="Calculadora" component={TelaCalculadora}/>
-//         //     <Drawer.Screen name="ListaReceitas" component={TelaListaReceitas}/>
-//         //     <Drawer.Screen name="Historico" component={TelaHistorico}/>
-//         //     <Drawer.Screen name="Perfil" component={Perfil}/>
-//         //     <Drawer.Screen name="Login" component={TelaLogin}/>
-//         // </Drawer.Navigator>
-//     )
-// }
+        <Drawer.Navigator initialRouteName="Login" screenOptions={{
+            title: '',
+            headerStyle:{
+                backgroundColor: '#250101'
+            },
+            drawerInactiveTintColor: '#BF0404',
+            drawerActiveTintColor: '#F27405',
+        }}>
+            <Drawer.Screen name="Receita" component={TelaReceita} options={{drawerItemStyle: { display: 'none' }}}/>
+            <Drawer.Screen name="Cadastro" component={TelaCadastro} options={{drawerItemStyle: { display: 'none' }}}/>
+            <Drawer.Screen name="Resultado" component={TelaResultado} options={{drawerItemStyle: { display: 'none' }}}/>
+            <Drawer.Screen name="Evento" component={Evento} options={{drawerItemStyle: { display: 'none' }}}/>
 
-// export default DrawerNavigation;
+            <Drawer.Screen name="Calculadora" component={TelaCalculadora} options={{
+                drawerLabel: 'Início'
+            }}/>
+            <Drawer.Screen name="ListaReceitas" component={TelaListaReceitas} options={{
+                drawerLabel: 'Receitas'
+            }}/>
+            <Drawer.Screen name="Historico" component={TelaHistorico} options={{drawerItemStyle: { display: 'none' }}}/>
+            <Drawer.Screen name="Perfil" component={Perfil} options={{drawerItemStyle: { display: 'none' }}}/>
+            <Drawer.Screen name="Login" component={TelaLogin} options={{
+                headerShown: false,
+                drawerLabel: 'Sair',
+            }}/>
+        </Drawer.Navigator>
+    )
+}
+
+export default DrawerNavigation;
