@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Button, ScrollView, TextInput } from "react-native"
+import { View, Text, Button, ScrollView, TextInput, TouchableOpacity } from "react-native"
 import { CheckBox } from "react-native-elements";
 import editarEvento from "../../services/api/eventos/editarEvento";
 import apagarEvento from "../../services/api/eventos/apagarEvento";
 import Alerta from "../../components/alerta";
+import estilos from "./estilos";
 
 function Evento({ route, navigation }) {
 
@@ -21,7 +22,7 @@ function Evento({ route, navigation }) {
     const [qtdMulheres, setQtdMulheres] = useState(route.params.qtdMulheres);
     const [qtdCriancas, setQtdCriancas] = useState(route.params.qtdCriancas);
     const [endereco, setEndereco] = useState(route.params.endereco);
-    const [custoLocal, setCustoLocal] = useState(route.params.custoLocal);
+    const [custoLocal, setCustoLocal] = useState(String(route.params.custoLocal));
     const [dataEvento, setDataEvento] = useState(route.params.dataEvento);
 
     // CARNE BOVINA
@@ -224,16 +225,55 @@ function Evento({ route, navigation }) {
     }
 
     return (
-        <ScrollView>
-            <Text>Calculadora de churras</Text>
+
+        <ScrollView style={estilos.tela}>
             {/* Estes 3 botões abaixo vão ficar no offcanvas */}
-            <Button title="Receitas" onPress={() => navigation.navigate("ListaReceitas")} />
             <Button title="Histórico" onPress={() => navigation.navigate("Historico", route.params)} />
             <Button title="Perfil" onPress={() => navigation.navigate("Perfil", route.params)} />
-            <Button title="Sair" onPress={() => navigation.navigate("Login")} />
+
+            <Text style={estilos.tituloVermelho}>Opções selecionadas do seu evento</Text>
+
+            <View style={estilos.containerQtdPessoa}>
+                <View style={estilos.fieldset}>
+                    <Text style={estilos.fieldsetLabel}>Homens</Text>
+                    <TextInput
+                        style={estilos.fieldsetInput}
+                        value={String(qtdHomens)}
+                        onChangeText={(texto) => setQtdHomens(texto)}
+                        placeholder=""
+                        keyboardType="numeric"
+                    />
+                </View>
+
+                <View style={estilos.fieldset}>
+                    <Text style={estilos.fieldsetLabel}>Mulheres</Text>
+                    <TextInput
+                        style={estilos.fieldsetInput}
+                        value={String(qtdMulheres)}
+                        onChangeText={(texto) => setQtdMulheres(texto)}
+                        placeholder=""
+                        keyboardType="numeric"
+                    />
+                </View>
+
+                <View style={estilos.fieldset}>
+                    <Text style={estilos.fieldsetLabel}>Crianças</Text>
+                    <TextInput
+                        style={estilos.fieldsetInput}
+                        value={String(qtdCriancas)}
+                        onChangeText={(texto) => setQtdCriancas(texto)}
+                        placeholder=""
+                        keyboardType="numeric"
+                    />
+                </View>
+            </View>
+
+            <View style={estilos.linhaMarrom}></View>
+
+            <Text style={estilos.tituloVermelho}>Carnes</Text>
 
             {/* CARNE BOVINA */}
-            <Text>Carne bovina</Text>
+            <Text style={estilos.subtitulo}>Carne bovina</Text>
             <CheckBox
                 title="Contra-filé"
                 checkedIcon="check"
@@ -263,7 +303,7 @@ function Evento({ route, navigation }) {
 
 
             {/* CARNE SUINA */}
-            <Text>Carne suína</Text>
+            <Text style={estilos.subtitulo}>Carne suína</Text>
             <CheckBox
                 title="Costela"
                 checkedIcon="check"
@@ -293,8 +333,9 @@ function Evento({ route, navigation }) {
 
 
             {/* LINGUÍÇAS */}
-            <Text>Linguícas</Text>
+            <Text style={estilos.subtitulo}>Linguícas</Text>
             <CheckBox
+                style={estilos.checkbox}
                 title="Linguíça Toscana"
                 checkedIcon="check"
                 uncheckedIcon="square-o"
@@ -322,9 +363,8 @@ function Evento({ route, navigation }) {
             />
 
 
-
             {/* CARNE DE FRANGO */}
-            <Text>Frango</Text>
+            <Text style={estilos.subtitulo}>Frango</Text>
             <CheckBox
                 title="Sobrecoxa"
                 checkedIcon="check"
@@ -352,10 +392,10 @@ function Evento({ route, navigation }) {
                 onPress={() => setAsa(!asa)}
             />
 
-
+            <View style={estilos.linhaMarrom}></View>
 
             {/* BEBDIDAS */}
-            <Text>Bebidas</Text>
+            <Text style={estilos.tituloVermelho}>Bebidas</Text>
             <CheckBox
                 title="Água"
                 checkedIcon="check"
@@ -392,10 +432,10 @@ function Evento({ route, navigation }) {
                 onPress={() => setSuco(!suco)}
             />
 
-
+            <View style={estilos.linhaMarrom}></View>
 
             {/* Suprimentos */}
-            <Text>Suprimentos</Text>
+            <Text style={estilos.tituloVermelho}>Suprimentos</Text>
             <CheckBox
                 title="Copo Descartável"
                 checkedIcon="check"
@@ -450,9 +490,10 @@ function Evento({ route, navigation }) {
                 onPress={() => setPalitos(!palitos)}
             />
 
+            <View style={estilos.linhaMarrom}></View>
 
             {/* ACOMPANHAMENTOS */}
-            <Text>Acompanhamentos</Text>
+            <Text style={estilos.tituloVermelho}>Acompanhamentos</Text>
             <CheckBox
                 title="Arroz"
                 checkedIcon="check"
@@ -509,101 +550,100 @@ function Evento({ route, navigation }) {
 
 
             {/* INFORMAÇÕES DO EVENTO */}
-            <Text>Nome do Evento</Text>
-            <TextInput
-                value={nomeEvento}
-                onChangeText={(texto) => setNomeEvento(texto)}
-                placeholder="Digite o nome do evento"
-            />
+            <View style={estilos.footer}>
 
-            <Text>Quantidade de Homens</Text>
-            <TextInput
-                value={String(qtdHomens)}
-                onChangeText={(texto) => setQtdHomens(texto)}
-                placeholder="Digite a quantidade de homens"
-                keyboardType="numeric"
-            />
+                <Text style={estilos.tituloAmarelo}>Mais informações</Text>
 
-            <Text>Quantidade de Mulheres</Text>
-            <TextInput
-                value={String(qtdMulheres)}
-                onChangeText={(texto) => setQtdMulheres(texto)}
-                placeholder="Digite a quantidade de mulheres"
-                keyboardType="numeric"
-            />
+                <View style={estilos.containerEvento}>
+                    <View style={estilos.inputTotal}>
+                        <Text style={estilos.label}>Nome do Evento</Text>
+                        <TextInput
+                            style={estilos.input}
+                            value={nomeEvento}
+                            onChangeText={(texto) => setNomeEvento(texto)}
+                            placeholder="Digite o nome do evento"
 
-            <Text>Quantidade de Crianças</Text>
-            <TextInput
-                value={String(qtdCriancas)}
-                onChangeText={(texto) => setQtdCriancas(texto)}
-                placeholder="Digite a quantidade de crianças"
-                keyboardType="numeric"
-            />
+                        />
+                    </View>
 
-            <Text>Enderço do evento</Text>
-            <TextInput
-                value={endereco}
-                onChangeText={(texto) => setEndereco(texto)}
-                placeholder="Digite o endereço do evento"
-            />
+                    <View style={estilos.inputTotal}>
+                        <Text style={estilos.label}>Endereço do evento</Text>
+                        <TextInput
+                            style={estilos.input}
+                            value={endereco}
+                            onChangeText={(texto) => setEndereco(texto)}
+                            placeholder="Digite o endereço do evento"
+                        />
+                    </View>
 
-            <Text>Informe o custo da locação</Text>
-            <TextInput
-                value={String(custoLocal)}
-                onChangeText={(texto) => setCustoLocal(texto)}
-                placeholder="Informe o custo do local do churrasco"
-                keyboardType="numeric"
-            />
+                    <View style={estilos.inputTotal}>
+                        <Text style={estilos.label}>Informe o custo da locação</Text>
+                        <TextInput
+                            style={estilos.input}
+                            value={String(custoLocal)}
+                            onChangeText={(texto) => setCustoLocal(texto)}
+                            placeholder="Informe o custo do local do churrasco"
+                            keyboardType="numeric"
+                        />
+                    </View>
 
-            <Text>Data do evento</Text>
-            <TextInput
-                value={dataEvento}
-                onChangeText={(texto) => setDataEvento(texto)}
-                placeholder="Informe o custo do local do churrasco"
+                    <View style={estilos.inputTotal}>
+                        <Text style={estilos.label}>Data do evento</Text>
+                        <TextInput
+                            style={estilos.input}
+                            value={dataEvento}
+                            onChangeText={(texto) => setDataEvento(texto)}
+                            placeholder="Informe a data do evento"
 
-            />
+                        />
+                    </View>
+
+                    <TouchableOpacity style={estilos.btnEditar} onPress={async () => {
 
 
-            <Button title="Editar evento" onPress={async () => {
 
-                
+                        const resposta = await editarEvento(route.params._id, evento);
 
-                const resposta = await editarEvento(route.params._id, evento);
+                        if (resposta.status === 'success') {
 
-                if (resposta.status === 'success') {
+                            Alerta("Sucesso!", "Evento editado e salvo com sucesso");
+                            navigation.navigate("Resultado", resposta.dados);
 
-                    Alerta("Sucesso!", "Evento editado e salvo com sucesso");
-                    navigation.navigate("Resultado", resposta.dados);
+                        } else {
 
-                } else {
+                            Alerta("Ops! Algo deu errado", resposta.msg);
 
-                    Alerta("Ops! Algo deu errado", resposta.msg);
-
-                }
+                        }
 
 
-            }} />
+                    }} ><Text style={estilos.txtSalvar}>Editar evento</Text></TouchableOpacity>
 
-            <Button title="Apagar evento" onPress={async () => {
+                    <TouchableOpacity style={estilos.btnApagar} onPress={async () => {
 
-                const resposta = await apagarEvento(route.params._id);
+                        const resposta = await apagarEvento(route.params._id);
 
-                if (resposta.status === 'success') {
+                        if (resposta.status === 'success') {
 
-                    Alerta("Sucesso!", resposta.msg);
-                    navigation.navigate("Calculadora", {id: evento.idOrganizador});
+                            Alerta("Sucesso!", resposta.msg);
+                            navigation.navigate("Calculadora", { id: evento.idOrganizador });
 
-                } else {
+                        } else {
 
-                    Alerta("Ops! Algo deu errado", resposta.msg);
+                            Alerta("Ops! Algo deu errado", resposta.msg);
 
-                }
+                        }
 
 
-            }} />
+                    }} ><Text style={estilos.txtSalvar}>Apagar evento</Text></TouchableOpacity>
+
+                    
+                </View>
+            </View>
         </ScrollView>
 
     )
 }
+
+
 
 export default Evento;
