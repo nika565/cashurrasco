@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, Button } from 'react-native';
+import { View, Text, FlatList, Button, TouchableOpacity, ScrollView } from 'react-native';
 import todosEventos from '../../services/api/eventos/todosEventos'
 import buscarEvento from '../../services/api/eventos/buscarEvento'
 import Alerta from '../../components/alerta'
+import estilos from './estilos';
 
-const TelaHistorico = ({route, navigation}) => {
+const TelaHistorico = ({ route, navigation }) => {
     const [data, setData] = useState(''); // Estado para armazenar todos os eventos
     const [error, setError] = useState(''); // Estado para armazenar mensagens de erro
+
 
     useEffect(() => {
         async function fetchData() {
@@ -31,39 +33,42 @@ const TelaHistorico = ({route, navigation}) => {
         }
 
         fetchData();
-    }, []); // A lista de dependências vazia garante que isso será executado apenas uma vez
+    }, [navigation]);
 
     const renderItem = ({ item }) => {
         return (
-            <View>
+            <View style={estilos.card}>
                 {console.log(item._id)}
-                <Text>Nome do Evento: {item.nomeEvento}</Text>
-                <Text>ID do Organizador: {item.idOrganizador}</Text>
-                <Text>Custo Total: {item.custoTotal}</Text>
-                <Button title='Ver mais' onPress={async () => {
+                <Text style={estilos.btnTexto}>Nome do Evento: {item.nomeEvento}</Text>
+                <Text style={estilos.btnTexto}>Quantidade de Pessoas: {item.qtdHomens + item.qtdMulheres + item.qtdCriancas}</Text>
+                <Text style={estilos.btnTexto}>Endereço: {item.endereco}</Text>
+                <Text style={estilos.btnTexto}>Custo Total: {item.custoTotal}</Text>
+                <TouchableOpacity style={estilos.btn} onPress={async () => {
 
 
                     const evento = await buscarEvento(item._id)
 
                     navigation.navigate('Evento', evento.evento)
-                }} />
+                }} ><Text style={estilos.btnTexto}>Ver Mais</Text></TouchableOpacity>
             </View>
         );
     }
 
     return (
-        <View>
+        <View style={{ padding: 10, backgroundColor: '#260101', height: '100%' }} >
             {error ? ( // Verifica se há uma mensagem de erro
-                <Text>Mensagem de Erro: {error}</Text>
+                <Text style={estilos.titulo}>Mensagem de Erro: {error}</Text>
             ) : (
-                <>
-                    <Text>Sua FlatList com dados da API:</Text>
+                <View style={{ backgroundColor: '#260101' }}>
+                    <Text style={estilos.titulo}>Histórico de eventos</Text>
                     <FlatList
                         data={data}
                         keyExtractor={(item) => item._id.toString()}
                         renderItem={renderItem}
+                        style={{height: '100%'}}
+
                     />
-                </>
+                </View>
             )}
         </View>
     );

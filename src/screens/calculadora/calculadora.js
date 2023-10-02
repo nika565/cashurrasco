@@ -13,7 +13,7 @@ function TelaCalculadora({ route, navigation }) {
     // LEMBRETE -> fAZER O useEffect
 
     // INFORMAÇÕES DO ORGANIZADOR DO EVENTO
-    const idOrganizador = route.params.id || route.params.idOrganizador;
+    const idOrganizador = route.params.id;
     const [nomeEvento, setNomeEvento] = useState('');
     const [qtdHomens, setQtdHomens] = useState('');
     const [qtdMulheres, setQtdMulheres] = useState('');
@@ -63,6 +63,11 @@ function TelaCalculadora({ route, navigation }) {
     const [paoAlho, setPaoAlho] = useState(false);
     const [vinagrete, setVinagrete] = useState(false);
     const [queijoCoalho, setQueijoCoalho] = useState(false);
+
+    // Função para recarregar a tela
+    recarregarTela = () => {
+        this.forceUpdate();
+    }
 
     // Objeto que vai para op back-end salvar o evento
     const evento = {
@@ -601,6 +606,9 @@ function TelaCalculadora({ route, navigation }) {
                         if (resposta.status === 'success') {
 
                             Alerta("Sucesso!", "Evento calculado e salvo com sucesso");
+
+                            this.recarregarTela();
+
                             navigation.navigate("Resultado", resposta.dados);
 
                         } else {
