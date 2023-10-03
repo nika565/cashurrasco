@@ -647,7 +647,7 @@ function Evento({ route, navigation }) {
                         if (resposta.status === 'success') {
 
                             Alerta("Sucesso!", resposta.msg);
-                            navigation.navigate("Calculadora", { id: evento.idOrganizador });
+                            navigation.navigate("Calculadora", { id: idOrganizador });
 
                         } else {
 

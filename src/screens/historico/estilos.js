@@ -14,7 +14,7 @@ const estilos = StyleSheet.create({
     titulo: {
         padding: 10,
         color: '#F27405',
-        alignItems: 'center',
+        alignSelf: 'center',
         fontSize: 22,
         margin: 15
     },
@@ -30,6 +30,17 @@ const estilos = StyleSheet.create({
     btnTexto: {
         color: '#fff',
         fontSize: 14
+    },
+
+    btnRecarregar: {
+        backgroundColor: '#F27405',
+        width: 150,
+        alignItems: 'center',
+        justifyContent: 'center',
+        alignSelf: 'center',
+        paddingVertical: 15,
+        borderRadius: 10,
+        margin: 5,
     }
 
 });
