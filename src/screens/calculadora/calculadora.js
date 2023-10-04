@@ -12,6 +12,10 @@ function TelaCalculadora({ route, navigation }) {
 
     // LEMBRETE -> fAZER O useEffect
 
+    // Manipular a data
+    const [date, setDate] = useState(new Date())
+    const [open, setOpen] = useState(false)
+
     // INFORMAÇÕES DO ORGANIZADOR DO EVENTO
     const idOrganizador = route.params.id;
     const [nomeEvento, setNomeEvento] = useState('');
@@ -597,7 +601,7 @@ function TelaCalculadora({ route, navigation }) {
                             value={dataEvento}
                             onChangeText={(texto) => setDataEvento(texto)}
                             placeholder="Informe a data do evento"
-                            
+
                         />
                     </View>
 
