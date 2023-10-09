@@ -1,10 +1,7 @@
 import React, { useState } from "react";
-import { Text, Button, ScrollView, TextInput, View, TouchableOpacity } from "react-native"
-import { CheckBox } from "react-native-elements";
-import criarEvento from "../../services/api/eventos/criarEvento";
-import Alerta from "../../components/alerta";
+import { Text, ScrollView, View, TouchableOpacity } from "react-native";
 import estilos from "./estilos";
-// import { TouchableOpacity } from "react-native-gesture-handler";
+import MapView from "react-native-maps";
 
 function TelaResultado({ route, navigation }) {
     // VARIÁVEIS PARA CONTROLAR TODOS OS DADOS DO EVENTO
@@ -21,172 +18,8 @@ function TelaResultado({ route, navigation }) {
 
     console.log(route.params);
 
-    // Objeto que vai para op back-end salvar o evento
-    // const evento = {
-    //     idOrganizador: idOrganizador,
-    //     nomeEvento: nomeEvento,
-    //     qtdHomens: Number(qtdHomens),
-    //     qtdMulheres: Number(qtdMulheres),
-    //     qtdCriancas: Number(qtdCriancas),
-    //     endereco: endereco,
-    //     custoLocal: Number(custoLocal),
-    //     dataEvento: dataEvento,
-
-    //     carnes: {
-
-    //         bovino: {
-
-    //             contraFile: {
-    //                 selecionado: contraFile
-    //             },
-
-    //             maminha: {
-    //                 selecionado: maminha
-    //             },
-
-    //             alcatra: {
-    //                 selecionado: alcatra
-    //             }
-
-    //         },
-
-    //         suino: {
-
-    //             costela: {
-    //                 selecionado: costela
-    //             },
-
-    //             fileSuino: {
-    //                 selcionado: fileSuino
-    //             },
-
-    //             lombo: {
-    //                 selecionado: lombo
-    //             }
-
-    //         },
-
-    //         frango: {
-
-    //             sobrecoxa: {
-    //                 selecionado: sobrecoxa
-    //             },
-
-    //             coracao: {
-    //                 selecionado: coracao
-    //             },
-
-    //             asa: {
-    //                 selecionado: asa
-    //             }
-
-    //         },
-
-    //         linguicas: {
-
-    //             toscana: {
-    //                 selecionado: toscana
-    //             },
-
-    //             cuiabana: {
-    //                 selecionado: cuiabana
-    //             },
-
-    //             linguicaFrango: {
-    //                 selecionado: linguicaFrango
-    //             }
-
-    //         }
-
-    //     },
-
-    //     bebidas: {
-
-    //         agua: {
-    //             selecionado: agua
-    //         },
-
-    //         refri: {
-    //             selecionado: refri
-    //         },
-
-    //         cerveja: {
-    //             selecionado: cerveja
-    //         },
-
-    //         suco: {
-    //             selecionado: suco
-    //         }
-
-    //     },
-
-    //     suprimentos: {
-
-    //         copoDesc: {
-    //             selecionado: copoDesc
-    //         },
-
-    //         talheres: {
-    //             selecionado: talheres
-    //         },
-
-    //         prato: {
-    //             selecionado: prato
-    //         },
-
-    //         carvao: {
-    //             selecionado: carvao
-    //         },
-
-    //         guardanapos: {
-    //             selecionado: guardanapos
-    //         },
-
-    //         palitos: {
-    //             selecionado: palitos
-    //         }
-
-    //     },
-
-    //     acompanhamentos: {
-
-    //         arroz: {
-    //             selecionado: arroz
-    //         },
-
-    //         farofa: {
-    //             selecionado: farofa
-    //         },
-
-    //         pao: {
-    //             selecionado: pao
-    //         },
-
-    //         paoAlho: {
-    //             selecionado: paoAlho
-    //         },
-
-    //         vinagrete: {
-    //             selecionado: vinagrete
-    //         },
-
-    //         queijoCoalho: {
-    //             selecionado: queijoCoalho
-    //         }
-
-    //     }
-
-    // }
-
     return (
         <ScrollView>
-            {/* <Text>Calculadora de churras</Text> */}
-            {/* Estes 3 botões abaixo vão ficar no offcanvas */}
-            {/* <Button title="Receitas" onPress={() => navigation.navigate("ListaReceitas")} />
-            <Button title="Histórico" onPress={() => navigation.navigate("Historico", route.params)} />
-            <Button title="Perfil" onPress={() => navigation.navigate("Perfil", route.params)} />
-            <Button title="Sair" onPress={() => navigation.navigate("Login")} /> */}
-
 
             {/* CARNE BOVINA */}
             <Text style={estilos.titulo}>Aqui está o resultado do cálculo</Text>
@@ -416,6 +249,8 @@ function TelaResultado({ route, navigation }) {
                         <Text style={estilos.label}>Endereço do evento</Text>
                         <Text>{route.params.endereco}</Text>
                     </View>
+
+                    <MapView style={estilos.mapa}/>
 
                     <View style={estilos.input}>
                         <Text style={estilos.label}>Data do evento</Text>
